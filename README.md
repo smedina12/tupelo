@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
      ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
     '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
@@ -16,3 +17,8 @@ http://www.youtube.com/user/c9ide.
 
 Happy coding!
 The Cloud9 IDE team
+=======
+# tupelo
+This is a software development project for a hair salon and barbershop 
+This is a test
+>>>>>>> 0915bfb8ee9c090ec36eb590d06da2d7fa1b716f
