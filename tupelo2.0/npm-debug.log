@@ -1,0 +1,84 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/versions/node/v4.5.0/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/versions/node/v4.5.0/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '–g',
+1 verbose cli   'cordova' ]
+2 info using npm@2.15.9
+3 info using node@v4.5.0
+4 verbose install initial load of /home/ubuntu/workspace/tupelo2.0/package.json
+5 verbose readDependencies loading dependencies from /home/ubuntu/workspace/tupelo2.0/package.json
+6 silly cache add args [ '–g', null ]
+7 verbose cache add spec –g
+8 silly cache add args [ 'cordova', null ]
+9 verbose cache add spec cordova
+10 silly cache add parsed spec Result {
+10 silly cache add   raw: '–g',
+10 silly cache add   scope: null,
+10 silly cache add   name: null,
+10 silly cache add   rawSpec: '–g',
+10 silly cache add   spec: '/home/ubuntu/workspace/tupelo2.0/–g',
+10 silly cache add   type: 'local' }
+11 silly cache add parsed spec Result {
+11 silly cache add   raw: 'cordova',
+11 silly cache add   scope: null,
+11 silly cache add   name: 'cordova',
+11 silly cache add   rawSpec: '',
+11 silly cache add   spec: 'latest',
+11 silly cache add   type: 'tag' }
+12 silly addNamed cordova@latest
+13 verbose addNamed "latest" is being treated as a dist-tag for cordova
+14 info addNameTag [ 'cordova', 'latest' ]
+15 silly mapToRegistry name cordova
+16 silly mapToRegistry using default registry
+17 silly mapToRegistry registry https://registry.npmjs.org/
+18 silly mapToRegistry data Result {
+18 silly mapToRegistry   raw: 'cordova',
+18 silly mapToRegistry   scope: null,
+18 silly mapToRegistry   name: 'cordova',
+18 silly mapToRegistry   rawSpec: '',
+18 silly mapToRegistry   spec: 'latest',
+18 silly mapToRegistry   type: 'tag' }
+19 silly mapToRegistry uri https://registry.npmjs.org/cordova
+20 verbose addNameTag registry:https://registry.npmjs.org/cordova not in flight; fetching
+21 error addLocal Could not install /home/ubuntu/workspace/tupelo2.0/–g
+22 verbose request uri https://registry.npmjs.org/cordova
+23 verbose request no auth needed
+24 info attempt registry request try #1 at 9:22:14 PM
+25 verbose request id b4ceb19204666013
+26 verbose etag "2MY8DNAPHI3CIT44YUMZNZ2GK"
+27 http request GET https://registry.npmjs.org/cordova
+28 info retry will retry, error on last attempt: TypeError: The header content contains invalid characters
+29 info attempt registry request try #2 at 9:22:25 PM
+30 verbose etag "2MY8DNAPHI3CIT44YUMZNZ2GK"
+31 http request GET https://registry.npmjs.org/cordova
+32 info retry will retry, error on last attempt: TypeError: The header content contains invalid characters
+33 info attempt registry request try #3 at 9:23:25 PM
+34 verbose etag "2MY8DNAPHI3CIT44YUMZNZ2GK"
+35 http request GET https://registry.npmjs.org/cordova
+36 silly get cb [ 304, undefined ]
+37 verbose etag https://registry.npmjs.org/cordova from cache
+38 verbose get saving cordova to /home/ubuntu/.npm/registry.npmjs.org/cordova/.cache.json
+39 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+40 silly addNameTag next cb for cordova with tag latest
+41 silly addNamed cordova@6.3.1
+42 verbose addNamed "6.3.1" is a plain semver version for cordova
+43 silly cache afterAdd cordova@6.3.1
+44 verbose afterAdd /home/ubuntu/.npm/cordova/6.3.1/package/package.json not in flight; writing
+45 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+46 verbose afterAdd /home/ubuntu/.npm/cordova/6.3.1/package/package.json written
+47 verbose stack Error: ENOENT: no such file or directory, open '/home/ubuntu/workspace/tupelo2.0/–g'
+47 verbose stack     at Error (native)
+48 verbose cwd /home/ubuntu/workspace/tupelo2.0
+49 error Linux 4.2.0-c9
+50 error argv "/home/ubuntu/.nvm/versions/node/v4.5.0/bin/node" "/home/ubuntu/.nvm/versions/node/v4.5.0/bin/npm" "install" "–g" "cordova"
+51 error node v4.5.0
+52 error npm  v2.15.9
+53 error path /home/ubuntu/workspace/tupelo2.0/–g
+54 error code ENOENT
+55 error errno -2
+56 error syscall open
+57 error enoent ENOENT: no such file or directory, open '/home/ubuntu/workspace/tupelo2.0/–g'
+57 error enoent This is most likely not a problem with npm itself
+57 error enoent and is related to npm not being able to find a file.
+58 verbose exit [ -2, true ]
