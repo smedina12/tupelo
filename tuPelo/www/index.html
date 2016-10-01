@@ -5,41 +5,89 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
-    <link rel="manifest" href="manifest.json">
-
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
-
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
-    <!-- ionic/angularjs js -->
+    
+    
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Manager view</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
+    
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    
+
+    <style type="text/css">
+      .platform-ios .manual-ios-statusbar-padding{
+        padding-top:20px;
+      }
+      .manual-remove-top-padding{
+        padding-top:0px; 
+      }
+      .manual-remove-top-padding .scroll{
+        padding-top:0px !important;
+      }
+      ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+        margin-left:-10px;
+        margin-right:-10px;
+      }
+      ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+        border-radius:0px;
+        border-left:0px;
+        border-right: 0px;
+      }
+    </style>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/routes.js"></script>
+    
+     
+    <script src="js/directives.js"></script>
+     
+    <script src="js/services.js"></script>
+    
+
+    <!-- Only required for Tab projects w/ pages in multiple tabs 
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+    -->
+
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7">
+  <div style="">
+    <ion-side-menus enable-menu-with-back-views="false" style="" data-componentid="side-menu21">
+        <ion-side-menu-content>
+            <ion-nav-bar class="bar-balanced">
+                <ion-nav-back-button></ion-nav-back-button>
+                <ion-nav-buttons side="left">
+                    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+                </ion-nav-buttons>
+            </ion-nav-bar>
+            <ion-nav-view></ion-nav-view>
+        </ion-side-menu-content>
+        <ion-side-menu side="left" id="side-menu21">
+            <ion-content ng-controller="edditCtrl" padding="false" style="top:0px !important;" class="side-menu-left ">
+                <div class="spacer" style="width: 248px; height: 19px;" data-componentid="spacer1"></div>
+                <div data-componentid="image1">
+                    <img src="img/XzlBe9NsRKurncYcF2yr_ScreenShot2016-10-01at5.21.36PM.png" style="display: block; margin-left: auto; margin-right: auto;" width="50%" height="auto">
+                </div>
+                <div class="spacer" style="width: 248px; height: 17px;" data-componentid="spacer2"></div>
+                <ion-list id="eddit-list8" data-componentid="list8">
+                    <ion-item class="item-icon-left balanced" id="eddit-list-item18" style="" data-componentid="list-item18">
+                        <i class="icon ion-ios-settings-strong"></i>Settings</ion-item>
+                    <ion-item class="item-icon-left balanced" id="eddit-list-item19" style="" data-componentid="list-item19">
+                        <i class="icon ion-ios-people"></i>Employees</ion-item>
+                    <ion-item class="item-icon-left balanced" id="eddit-list-item20" style="" data-componentid="list-item20">
+                        <i class="icon ion-android-calendar"></i>My calendar</ion-item>
+                    <ion-item class="item-icon-left balanced" id="eddit-list-item21" style="" data-componentid="list-item21">
+                        <i class="icon ion-calendar"></i>Our calendar</ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+    </ion-side-menus>
+</div>
   </body>
 </html>
