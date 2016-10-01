@@ -12,4 +12,10 @@ This is a test from soheb..
 This is just another test. 
 test
 testing..
+<<<<<<< HEAD
+>>>>>>> dev
+=======
+This is just another test.
+
+This is a test from soheb..
 >>>>>>> dev
