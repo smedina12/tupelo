@@ -10,19 +10,79 @@ angular.module('app.routes', [])
     
   
 
-      .state('addNew', {
+      .state('menu.settings', {
+    url: '/page1',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/settings.html',
+        controller: 'settingsCtrl'
+      }
+    }
+  })
+
+  .state('menu.employees', {
+    url: '/page2',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employees.html',
+        controller: 'employeesCtrl'
+      }
+    }
+  })
+
+  .state('fullCalendar', {
     url: '/page4',
-    templateUrl: 'templates/addNew.html',
-    controller: 'addNewCtrl'
+    templateUrl: 'templates/fullCalendar.html',
+    controller: 'fullCalendarCtrl'
   })
 
-  .state('barbers', {
-    url: '/employees_page',
-    templateUrl: 'templates/barbers.html',
-    controller: 'barbersCtrl'
+  .state('menu.myCalendar', {
+    url: '/page8',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/myCalendar.html',
+        controller: 'myCalendarCtrl'
+      }
+    }
   })
 
-$urlRouterProvider.otherwise('/page4')
+  .state('menu.detailedCalendar', {
+    url: '/page7',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/detailedCalendar.html',
+        controller: 'detailedCalendarCtrl'
+      }
+    }
+  })
+
+  .state('menu.fullCalendar2', {
+    url: '/page9',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/fullCalendar2.html',
+        controller: 'fullCalendar2Ctrl'
+      }
+    }
+  })
+
+  .state('menu', {
+    url: '/side-menu21',
+    templateUrl: 'templates/menu.html',
+    controller: 'menuCtrl'
+  })
+
+  .state('menu.signup', {
+    url: '/page6',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/signup.html',
+        controller: 'signupCtrl'
+      }
+    }
+  })
+
+$urlRouterProvider.otherwise('/side-menu21/page8')
 
   
 
