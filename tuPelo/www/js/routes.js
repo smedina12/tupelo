@@ -92,8 +92,56 @@ angular.module('app.routes', [])
   })
 
 
-$urlRouterProvider.otherwise('/side-menu21/page8')
+//$urlRouterProvider.otherwise('/side-menu21/page8')
+
+      .state('employeeMenu.employeeAppointments', {
+    url: '/page1',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeAppointments.html',
+        controller: 'employeeAppointmentsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCalendar', {
+    url: '/page2',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCalendar.html',
+        controller: 'employeeCalendarCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeReviews', {
+    url: '/page3',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeReviews.html',
+        controller: 'employeeReviewsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCustomerSettings', {
+    url: '/page4',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCustomerSettings.html',
+        controller: 'employeeCustomerSettingsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu', {
+    url: '/side-menu21',
+    templateUrl: 'templates/employeeMenu.html',
+    controller: 'employeeMenuCtrl'
+  })
+
+$urlRouterProvider.otherwise('/side-menu21/page1');
 
   
-
 });
+
