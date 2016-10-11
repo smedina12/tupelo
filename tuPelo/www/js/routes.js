@@ -11,7 +11,7 @@ angular.module('app.routes', [])
   
 
       .state('menu.settings', {
-    url: '/page1',
+    url: '/settings',
     views: {
       'side-menu21': {
         templateUrl: 'templates/settings.html',
@@ -21,7 +21,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.employees', {
-    url: '/page2',
+    url: '/Manager_Employee',
     views: {
       'side-menu21': {
         templateUrl: 'templates/employees.html',
@@ -30,14 +30,18 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('fullCalendar', {
-    url: '/page4',
-    templateUrl: 'templates/fullCalendar.html',
-    controller: 'fullCalendarCtrl'
+  .state('menu.fullCalendar', {
+    url: '/Manager_Fullcalendar',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/fullCalendar.html',
+        controller: 'fullCalendarCtrl'
+      }
+    }
   })
 
   .state('menu.myCalendar', {
-    url: '/page8',
+    url: '/Manager_Mycalendar',
     views: {
       'side-menu21': {
         templateUrl: 'templates/myCalendar.html',
@@ -47,7 +51,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.detailedCalendar', {
-    url: '/page7',
+    url: '/Manager_DetailCalendar',
     views: {
       'side-menu21': {
         templateUrl: 'templates/detailedCalendar.html',
@@ -56,33 +60,24 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.fullCalendar2', {
-    url: '/page9',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/fullCalendar2.html',
-        controller: 'fullCalendar2Ctrl'
-      }
-    }
-  })
-
   .state('menu', {
-    url: '/side-menu21',
+    url: '/Manager_sideMenu',
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
   })
 
-  .state('menu.signup', {
-    url: '/page6',
+  .state('menu.employeeAdd', {
+    url: '/Add_Employee',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/signup.html',
-        controller: 'signupCtrl'
+        templateUrl: 'templates/employeeAdd.html',
+        controller: 'employeeAddCtrl'
       }
     }
   })
+
   .state('menu.test1', {
-    url: '/page9',
+    url: '/justTest',
     views: {
       'side-menu21': {
         templateUrl: 'templates/test1.html',
@@ -91,57 +86,8 @@ angular.module('app.routes', [])
     }
   })
 
-
-//$urlRouterProvider.otherwise('/side-menu21/page8')
-
-      .state('employeeMenu.employeeAppointments', {
-    url: '/page1',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/employeeAppointments.html',
-        controller: 'employeeAppointmentsCtrl'
-      }
-    }
-  })
-
-  .state('employeeMenu.employeeCalendar', {
-    url: '/page2',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/employeeCalendar.html',
-        controller: 'employeeCalendarCtrl'
-      }
-    }
-  })
-
-  .state('employeeMenu.employeeReviews', {
-    url: '/page3',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/employeeReviews.html',
-        controller: 'employeeReviewsCtrl'
-      }
-    }
-  })
-
-  .state('employeeMenu.employeeCustomerSettings', {
-    url: '/page4',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/employeeCustomerSettings.html',
-        controller: 'employeeCustomerSettingsCtrl'
-      }
-    }
-  })
-
-  .state('employeeMenu', {
-    url: '/side-menu21',
-    templateUrl: 'templates/employeeMenu.html',
-    controller: 'employeeMenuCtrl'
-  })
-
-$urlRouterProvider.otherwise('/side-menu21/page1');
+$urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
 
   
-});
 
+});
