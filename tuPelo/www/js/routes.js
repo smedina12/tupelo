@@ -11,7 +11,7 @@ angular.module('app.routes', [])
   
 
       .state('menu.settings', {
-    url: '/settings',
+    url: '/page1',
     views: {
       'side-menu21': {
         templateUrl: 'templates/settings.html',
@@ -21,7 +21,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.employees', {
-    url: '/Manager_Employee',
+    url: '/page2',
     views: {
       'side-menu21': {
         templateUrl: 'templates/employees.html',
@@ -30,18 +30,14 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.fullCalendar', {
-    url: '/Manager_Fullcalendar',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/fullCalendar.html',
-        controller: 'fullCalendarCtrl'
-      }
-    }
+  .state('fullCalendar', {
+    url: '/page4',
+    templateUrl: 'templates/fullCalendar.html',
+    controller: 'fullCalendarCtrl'
   })
 
   .state('menu.myCalendar', {
-    url: '/Manager_Mycalendar',
+    url: '/page8',
     views: {
       'side-menu21': {
         templateUrl: 'templates/myCalendar.html',
@@ -51,7 +47,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.detailedCalendar', {
-    url: '/Manager_DetailCalendar',
+    url: '/page7',
     views: {
       'side-menu21': {
         templateUrl: 'templates/detailedCalendar.html',
@@ -60,24 +56,33 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu', {
-    url: '/Manager_sideMenu',
-    templateUrl: 'templates/menu.html',
-    controller: 'menuCtrl'
-  })
-
-  .state('menu.employeeAdd', {
-    url: '/Add_Employee',
+  .state('menu.fullCalendar2', {
+    url: '/page9',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/employeeAdd.html',
-        controller: 'employeeAddCtrl'
+        templateUrl: 'templates/fullCalendar2.html',
+        controller: 'fullCalendar2Ctrl'
       }
     }
   })
 
+  .state('menu', {
+    url: '/side-menu21',
+    templateUrl: 'templates/menu.html',
+    controller: 'menuCtrl'
+  })
+
+  .state('menu.signup', {
+    url: '/page6',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/signup.html',
+        controller: 'signupCtrl'
+      }
+    }
+  })
   .state('menu.test1', {
-    url: '/justTest',
+    url: '/page9',
     views: {
       'side-menu21': {
         templateUrl: 'templates/test1.html',
@@ -86,8 +91,104 @@ angular.module('app.routes', [])
     }
   })
 
-$urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
 
+//$urlRouterProvider.otherwise('/side-menu21/page8')
+
+      .state('employeeMenu.employeeAppointments', {
+    url: '/page1',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeAppointments.html',
+        controller: 'employeeAppointmentsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCalendar', {
+    url: '/page2',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCalendar.html',
+        controller: 'employeeCalendarCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeReviews', {
+    url: '/page3',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeReviews.html',
+        controller: 'employeeReviewsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCustomerSettings', {
+    url: '/page4',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCustomerSettings.html',
+        controller: 'employeeCustomerSettingsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu', {
+    url: '/side-menu21',
+    templateUrl: 'templates/employeeMenu.html',
+    controller: 'employeeMenuCtrl'
+  })
+
+//$urlRouterProvider.otherwise('/side-menu21/page1');
+
+.state('employeeMenu.employeeAppointments', {
+    url: '/employeeAppointments',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeAppointments.html',
+        controller: 'employeeAppointmentsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCalendar', {
+    url: '/employeeCalendar',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCalendar.html',
+        controller: 'employeeCalendarCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeReviews', {
+    url: '/employeeReviews',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeReviews.html',
+        controller: 'employeeReviewsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCustomerSettings', {
+    url: '/employeeCustomerSettings',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCustomerSettings.html',
+        controller: 'employeeCustomerSettingsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu', {
+    url: '/employeeMenu',
+    templateUrl: 'templates/employeeMenu.html',
+    controller: 'employeeMenuCtrl'
+  })
+
+$urlRouterProvider.otherwise('/employeeMenu/employeeAppointments')
   
-
 });
+
