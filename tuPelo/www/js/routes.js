@@ -1,3 +1,5 @@
+
+
 angular.module('app.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -10,84 +12,57 @@ angular.module('app.routes', [])
     
   
 
-      .state('menu.settings', {
-    url: '/settings',
+      .state('employeeMenu.employeeAppointments', {
+    url: '/employeeAppointments',
     views: {
       'side-menu21': {
-        templateUrl: 'manager_view/settings.html',
-        controller: 'settingsCtrl'
+        templateUrl: 'employee_view/employeeAppointments.html',
+        controller: 'employeeAppointmentsCtrl'
       }
     }
   })
 
-  .state('menu.employees', {
-    url: '/Manager_Employee',
+  .state('employeeMenu.employeeCalendar', {
+    url: '/employeeCalendar',
     views: {
       'side-menu21': {
-        templateUrl: 'manager_view/employees.html',
-        controller: 'employeesCtrl'
+        templateUrl: 'employee_view/employeeCalendar.html',
+        controller: 'employeeCalendarCtrl'
       }
     }
   })
 
-  .state('menu.fullCalendar', {
-    url: '/Manager_Fullcalendar',
+  .state('employeeMenu.employeeReviews', {
+    url: '/employeeReviews',
     views: {
       'side-menu21': {
-        templateUrl: 'manager_view/fullCalendar.html',
-        controller: 'fullCalendarCtrl'
+        templateUrl: 'employee_view/employeeReviews.html',
+        controller: 'employeeReviewsCtrl'
       }
     }
   })
 
-  .state('menu.myCalendar', {
-    url: '/Manager_Mycalendar',
+  .state('employeeMenu.employeeCustomerSettings', {
+    url: '/employeeCustomerSettings',
     views: {
       'side-menu21': {
-        templateUrl: 'manager_view/myCalendar.html',
-        controller: 'myCalendarCtrl'
+        templateUrl: 'employee_view/employeeCustomerSettings.html',
+        controller: 'employeeCustomerSettingsCtrl'
       }
     }
   })
 
-  .state('menu.detailedCalendar', {
-    url: '/Manager_DetailCalendar',
-    views: {
-      'side-menu21': {
-        templateUrl: 'manager_view/detailedCalendar.html',
-        controller: 'detailedCalendarCtrl'
-      }
-    }
+  .state('employeeMenu', {
+    url: '/employeeMenu',
+    templateUrl: 'employee_view/employeeMenu.html',
+    controller: 'employeeMenuCtrl'
   })
 
-  .state('menu', {
-    url: '/Manager_sideMenu',
-    templateUrl: 'manager_view/menu.html',
-    controller: 'menuCtrl'
-  })
-
-  .state('menu.employeeAdd', {
-    url: '/Add_Employee',
-    views: {
-      'side-menu21': {
-        templateUrl: 'manager_view/employeeAdd.html',
-        controller: 'employeeAddCtrl'
-      }
-    }
-  })
-
-  .state('menu.test1', {
-    url: '/justTest',
-    views: {
-      'side-menu21': {
-        templateUrl: 'manager_view/test1.html',
-        controller: 'test1Ctrl'
-      }
-    }
-  })
-
-$urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
+$urlRouterProvider.otherwise('/employeeMenu/employeeAppointments')
 
   
 
 });
+
+
+
