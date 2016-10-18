@@ -1,6 +1,7 @@
 
 var user = 'Owner';
-if(user != 'Owner')
+//var user = 'Customer';
+if(user == 'Owner')
 {
 
 angular.module('app.routes', [])
@@ -96,9 +97,11 @@ $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
 
 });
 }
-else
+
+else if(user == 'Customer')
 {
-  angular.module('app.routes', [])
+ angular.module('app.routes', [])
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -106,18 +109,72 @@ else
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-  .state('menu.settings', {
-    url: '/settings',
+    
+  
+
+      .state('tabsController.signUp', {
+    url: '/page2',
     views: {
-      'side-menu21': {
-        templateUrl: 'manager_view/settings.html',
-        controller: 'settingsCtrl'
+      'tab1': {
+        templateUrl: 'customer_view/signUp.html',
+        controller: 'signUpCtrl'
       }
     }
   })
-  $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
-});
+
+  .state('tabsController.cartTabDefaultPage', {
+    url: '/page3',
+    views: {
+      'tab2': {
+        templateUrl: 'customer_view/cartTabDefaultPage.html',
+        controller: 'cartTabDefaultPageCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.cloudTabDefaultPage', {
+    url: '/page4',
+    views: {
+      'tab3': {
+        templateUrl: 'customer_view/cloudTabDefaultPage.html',
+        controller: 'cloudTabDefaultPageCtrl'
+      }
+    }
+  })
+
+  .state('tabsController', {
+    url: '/page1',
+    templateUrl: 'customer_view/tabsController.html',
+    abstract:true
+  })
+
+  .state('customerSignUp', {
+    url: '/signuppage',
+    templateUrl: 'customer_view/customerSignUp.html',
+    controller: 'customerSignUpCtrl'
+  })
+
+  .state('welcomePage', {
+    url: '/welcomepage',
+    templateUrl: 'customer_view/welcomePage.html',
+    controller: 'welcomePageCtrl'
+  })
+
+  .state('login', {
+    url: '/loginpage',
+    templateUrl: 'customer_view/login.html',
+    controller: 'loginCtrl'
+  })
+
+  .state('hairstylist', {
+    url: '/hairstylistpage',
+    templateUrl: 'customer_view/hairstylist.html',
+    controller: 'hairstylistCtrl'
+  })
+
+//$urlRouterProvider.otherwise('/loginpage')
+
   
-var node = document.getElementById('hi');
-node.innerHTML('<p>some dynamic html</p>');
+
+});
 }
