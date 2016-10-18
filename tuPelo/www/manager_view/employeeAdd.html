@@ -1,21 +1,63 @@
+</style>
+    <script src="js/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDZ7Vt-uvCKiWHheqow3m0IU3DUm-Etc0M",
+      authDomain: "tupelo-8d8db.firebaseapp.com",
+      databaseURL: "https://tupelo-8d8db.firebaseio.com",
+      storageBucket: "tupelo-8d8db.appspot.com",
+      messagingSenderId: "559675911359"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script>
+  var database = firebase.database();
+  
+  function writeUserData(userId, name, email, imageUrl) {
+  firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
+      </script>
+      
+
 <ion-view title="EmployeeAdd" id="page6" style="">
     <ion-content padding="true" class="has-header">
         <form id="employeeAdd-form1" class="list">
             <ion-list id="employeeAdd-list2">
-                <label class="item item-input" id="employeeAdd-input1">
+                <label class="item item-input" id="employeeAdd-name">
                     <span class="input-label">Name</span>
                     <input placeholder="" type="text">
                 </label>
-                <label class="item item-input" id="employeeAdd-input2">
+                <label class="item item-input" id="employeeAdd-phone">
                     <span class="input-label">Phone number</span>
                     <input placeholder="" type="tel">
                 </label>
-                <label class="item item-input" id="employeeAdd-input3">
-                    <span class="input-label">Password</span>
+                <label class="item item-input" id="employeeAdd-email">
+                    <span class="input-label">Email</span>
                     <input placeholder="" type="text">
+                </label>
+                 <label class="item item-input" id="employeeAdd-password">
+                    <span class="input-label">Password</span>
+                    <input placeholder="" type="password">
                 </label>
             </ion-list>
             <button id="employeeAdd-button2" class="button button-stable  button-block">Sign up</button>
         </form>
     </ion-content>
 </ion-view>
+
+      <script>
+      function writeUserData(userId, name, email, password) {
+  firebase.database().ref('users/' + userId).set({
+    username: document.getElementById('employeeAdd-phone').value,
+    name: document.getElementById('employeeAdd-name').value,
+    email: document.getElementById('employeeAdd-email').value,
+    password : document.getElementById('employeeAdd-password').value
+  });
+}
+      </script>
+  
