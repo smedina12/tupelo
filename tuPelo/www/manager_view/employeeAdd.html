@@ -23,7 +23,16 @@
 }
       </script>
       
-
+      <script>
+      function writeUserData(userId, name, email, imageUrl) {
+  firebase.database().ref('users/' + userId).set({
+    username: document.getElementById('textbox_id').value,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
+      </script>
+  
 <ion-view title="EmployeeAdd" id="page6" style="">
     <ion-content padding="true" class="has-header">
         <form id="employeeAdd-form1" class="list">
@@ -42,22 +51,10 @@
                 </label>
                  <label class="item item-input" id="employeeAdd-password">
                     <span class="input-label">Password</span>
-                    <input placeholder="" type="password">
+                    <input placeholder="" type="password" >
                 </label>
             </ion-list>
             <button id="employeeAdd-button2" class="button button-stable  button-block">Sign up</button>
         </form>
     </ion-content>
 </ion-view>
-
-      <script>
-      function writeUserData(userId, name, email, password) {
-  firebase.database().ref('users/' + userId).set({
-    username: document.getElementById('employeeAdd-phone').value,
-    name: document.getElementById('employeeAdd-name').value,
-    email: document.getElementById('employeeAdd-email').value,
-    password : document.getElementById('employeeAdd-password').value
-  });
-}
-      </script>
-  
