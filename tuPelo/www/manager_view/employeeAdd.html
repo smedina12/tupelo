@@ -1,39 +1,6 @@
-</style>
-    <script src="js/firebase.js"></script>
-    <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDZ7Vt-uvCKiWHheqow3m0IU3DUm-Etc0M",
-      authDomain: "tupelo-8d8db.firebaseapp.com",
-      databaseURL: "https://tupelo-8d8db.firebaseio.com",
-      storageBucket: "tupelo-8d8db.appspot.com",
-      messagingSenderId: "559675911359"
-    };
-    firebase.initializeApp(config);
-  </script>
-  <script>
-  var database = firebase.database();
+
   
-  function writeUserData(userId, name, email, imageUrl) {
-  firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
-      </script>
-      
-      <script>
-      function writeUserData(userId, name, email, imageUrl) {
-  firebase.database().ref('users/' + userId).set({
-    username: document.getElementById('textbox_id').value,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
-      </script>
-  
-<ion-view title="EmployeeAdd" id="page6" style="">
+<ion-view title="EmployeeAdd" id="page6" style="" >
     <ion-content padding="true" class="has-header">
         <form id="employeeAdd-form1" class="list">
             <ion-list id="employeeAdd-list2">
@@ -56,5 +23,6 @@
             </ion-list>
             <button id="employeeAdd-button2" class="button button-stable  button-block">Sign up</button>
         </form>
+                
     </ion-content>
 </ion-view>

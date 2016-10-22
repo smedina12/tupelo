@@ -1,9 +1,15 @@
-<ion-view title="test1" id="page9" style="">
-    <ion-content padding="true" class="has-header">
-        <form id="test1-form9" class="list">
-            <label class="item item-input" id="test1-textarea1">
-                <span class="input-label">This is just a test</span><textarea placeholder=""></textarea>
-            </label>
-        </form>
-    </ion-content>
+<ion-view view-title="Items">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in items" type="item-text-wrap" href="#/tab/items/{{item.id}}" ng-show="item.here==true">
+        <h2>{{item.name}}</h2>
+        <p>{{item.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(item)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

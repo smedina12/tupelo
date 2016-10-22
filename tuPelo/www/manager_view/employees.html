@@ -1,19 +1,16 @@
-<ion-view title="Employees" id="page2" style="">
-    <ion-content padding="true" class="has-header">
-        <a ui-sref="menu.employeeAdd" id="employees-button1" class="button button-balanced  button-block button-clear icon-left ion-plus-circled">Add new</a>
-        <ion-list id="employees-list1">
-            <ion-item class="item-avatar" id="employees-list-item5" style="">
-                <h2>Barber_1</h2>
-            </ion-item>
-            <ion-item class="item-avatar" id="employees-list-item6" style="">
-                <h2>Barber_1</h2>
-            </ion-item>
-            <ion-item class="item-avatar" id="employees-list-item7" style="">
-                <h2>Barber_1</h2>
-            </ion-item>
-            <ion-item class="item-avatar" id="employees-list-item8" style="">
-                <h2>Barber_1</h2>
-            </ion-item>
-        </ion-list>
-    </ion-content>
+<ion-view view-title="Barbers">
+  <ion-content>
+       <a ui-sref="menu.employeeAdd" id="employees-button1" class="button button-balanced  button-block button-clear icon-left ion-plus-circled">Add new</a>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in items"  >
+        <h2>{{item.name}}</h2>
+        <p>{{item.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(item)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

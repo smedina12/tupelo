@@ -5,6 +5,7 @@ if(user == 'Owner')
 {
 
 angular.module('app.routes', [])
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -100,7 +101,7 @@ $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
 
 else if(user == 'Customer')
 {
- angular.module('app.routes', [])
+ angular.module('app.routes', ['Items'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -172,7 +173,7 @@ else if(user == 'Customer')
     controller: 'hairstylistCtrl'
   })
 
-//$urlRouterProvider.otherwise('/loginpage')
+$urlRouterProvider.otherwise('/loginpage')
 
   
 
