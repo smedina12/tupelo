@@ -2,9 +2,9 @@
   
 <ion-view title="EmployeeAdd" id="page6" style="" >
     <ion-content padding="true" class="has-header">
-        <form id="employeeAdd-form1" class="list">
+        <form id="employeeAdd-form1" class="list" ng-submit="addMessage()">
             <ion-list id="employeeAdd-list2">
-                <label class="item item-input" id="employeeAdd-name">
+                <label class="item item-input" id="employeeAdd-name" ng-module="data.message">
                     <span class="input-label">Name</span>
                     <input placeholder="" type="text">
                 </label>
