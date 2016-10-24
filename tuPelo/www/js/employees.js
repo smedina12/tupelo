@@ -1,17 +1,7 @@
-angular.module('employees', ['firebase'])
+angular.module('app.employees', [])
 
-.run(function(){
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDZ7Vt-uvCKiWHheqow3m0IU3DUm-Etc0M",
-      authDomain: "tupelo-8d8db.firebaseapp.com",
-      databaseURL: "https://tupelo-8d8db.firebaseio.com",
-      storageBucket: "tupelo-8d8db.appspot.com",
-      messagingSenderId: "559675911359"
-    };
-    firebase.initializeApp(config);
-})
-.service('Employees', ['$firebaseArray', function($firebaseArray){
+
+.service('Employees', []);
     
      
      // Might use a resource here that returns a JSON array
@@ -59,18 +49,36 @@ angular.module('employees', ['firebase'])
       }
       return null;
     }
-  }*/
- var ref = firebase.database().ref().child('employees');
-  
-  var items = $firebaseArray(ref);
-
-    
-  var employee = 
-  {
-   'items':items 
   }
-   return employee;
+function ($scope, $stateParams, $firebaseArray, $ionicUser) {
+    $scope.data = 
+    {
+     'message': ''
+     
+    };
+    
+    
+    var ref = firebase.database().ref().chilçd("messages");
+    //create a syncronized array
+    $scope.messages = $firebaseArray(ref);
+    
+    //add new items to the array
+    //The massage is automatically added to firebase database!
+    $scope.addMessage= function()
+    {
+     $scope.messages.$add({
+         text: $scope.data.message,
+         email: $ionicUser.details.email,
+         name: $ionicUser.details.name
+     });
+     $scope.data.message='';
+    };
+    
+    
+    
 
-}]);
+
+
+}*/
 
 
