@@ -90,13 +90,11 @@ function ($scope, $stateParams, $firebaseObject) {
     //$scope.user = {name: user.name, phone: user.phone, email: user.email, password:user.pass};
     
   //var user   = {'name': $scope.name, 'email': $scope.email,'phone': $scope.phone, 'pass': $scope.pass};
- var name = document.getElementById("name").value
+// var name = document.getElementById("name").value
   
-    =$scope.name;
-  var phone  =$scope.phone;
-  var password  =$scope.pass;
-  var email  =$scope.email;
-var users ={'phone':'6789797010', 'password':'hello', 'name':name, 'email':'samuelmedina@me.com'}
+    //=$scope.name;
+
+var users ={'phone':'6789797010', 'password':'hello', 'name': $("#name").value, 'email':'samuelmedina@me.com'}
     
 linksRef = firebase.database().ref().child('employees');
 linksRef.push(users);
