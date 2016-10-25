@@ -64,20 +64,47 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('employeeAddCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('employeeAddCtrl',
+function ($scope, $stateParams, $firebaseArray) {
     
+     $scope.doClick = function () {
+    alert('I click');
+ 
+  
+var ref = firebase.database().ref().child("messages");
+$scope.messages = $firebaseArray(ref);
+
+
+
     
+   $scope.add=function(){
+    $scope.users.$add({
+      text: $scope.name,
+      email: $scope.email,
+      phone: $scope.phone,
+      pass: $scope.pass
+    });
+   }
+    
+    var user   = {'name': $scope.name, 'email': $scope.email,'phone': $scope.phone, 'pass': $scope.pass};
+
+    
+linksRef = firebase.database().ref().child('employees');
+linksRef.push(user);
+
+
+
+     };
     
 
-}])
+})
    
 .controller('test1Ctrl',
 function($scope, $stateParams, $firebaseObject){
     var ref = firebase.database().ref();
 $scope.name = $firebaseObject(ref);
+
+
 
 /*function ($scope, $stateParams, Employees) {
 

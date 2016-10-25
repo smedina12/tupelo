@@ -6,22 +6,25 @@
             <ion-list id="employeeAdd-list2">
                 <label class="item item-input" id="employeeAdd-name" ng-module="data.message">
                     <span class="input-label">Name</span>
-                    <input placeholder="" type="text">
+                    <input placeholder="name" type="text" ng-model="name">
                 </label>
                 <label class="item item-input" id="employeeAdd-phone">
                     <span class="input-label">Phone number</span>
-                    <input placeholder="" type="tel">
+                    <input placeholder="ej:676777777" type="tel" ng-model="phone" >
                 </label>
                 <label class="item item-input" id="employeeAdd-email">
                     <span class="input-label">Email</span>
-                    <input placeholder="" type="text">
+                    <input placeholder="sample@sample.com" type="text" ng-model="email">
                 </label>
                  <label class="item item-input" id="employeeAdd-password">
                     <span class="input-label">Password</span>
-                    <input placeholder="" type="password" >
+                    <input placeholder="*****" type="password" ng-model="pass">
+                    
+                    <pre>user = {{user | json}}</pre>
+                    <pre>master = {{master | json}}</pre>
                 </label>
             </ion-list>
-            <button id="employeeAdd-button2" class="button button-stable  button-block">Sign up</button>
+            <button id="employeeAdd-button2" class="button button-stable  button-block" ng-click="doClick()">Sign up</button>
         </form>
                 
     </ion-content>
