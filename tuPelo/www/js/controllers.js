@@ -19,18 +19,20 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('employeesCtrl',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-
-function ($scope,$stateParams) {
-      //$scope.chats = Item.all();
-    //$scope.items = Employees.items;
+.controller('employeesCtrl', 
+function($scope, $stateParams, $firebaseObject){
+    var ref = firebase.database().ref();
     
-    //$scope.itemid=$stateParams.item
+     $scope.user = $firebaseObject(ref)
+//$scope.user = $firebaseObject(ref);
+
+/*function ($scope, $stateParams, Employees) {
+
+    $scope.items = Employees.items;*/
+    
     
 
-})
+  })
    
 .controller('fullCalendarCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -66,14 +68,6 @@ function ($scope, $stateParams) {
    
 .controller('employeeAddCtrl',
 function ($scope, $stateParams, $firebaseObject) {
-   
-    var objify = function() {
-  var rv = {};
-    for (var i = 0; i < arguments.length; ++i)
-      rv[arguments[i]] = rv[arguments[i+1]];
-    return rv;
-}
-objify("name", "filler")
     
      $scope.doClick = function () {
     
@@ -96,9 +90,15 @@ objify("name", "filler")
     //$scope.user = {name: user.name, phone: user.phone, email: user.email, password:user.pass};
     
   //var user   = {'name': $scope.name, 'email': $scope.email,'phone': $scope.phone, 'pass': $scope.pass};
-var users ={'phone':$scope.phone, 'password':$scope.pass, 'name':$scope.name, 'email':$scope.email}
-
-linksRef = firebase.database().ref();
+ var name = document.getElementById("name").value
+  
+    =$scope.name;
+  var phone  =$scope.phone;
+  var password  =$scope.pass;
+  var email  =$scope.email;
+var users ={'phone':'6789797010', 'password':'hello', 'name':name, 'email':'samuelmedina@me.com'}
+    
+linksRef = firebase.database().ref().child('employees');
 linksRef.push(users);
      };
     
