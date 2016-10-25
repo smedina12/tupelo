@@ -65,38 +65,44 @@ function ($scope, $stateParams) {
 }])
    
 .controller('employeeAddCtrl',
-function ($scope, $stateParams, $firebaseArray) {
+function ($scope, $stateParams, $firebaseObject) {
+   
+    var objify = function() {
+  var rv = {};
+    for (var i = 0; i < arguments.length; ++i)
+      rv[arguments[i]] = rv[arguments[i+1]];
+    return rv;
+}
+objify("name", "filler")
     
      $scope.doClick = function () {
-    alert('I click');
+    
  
   
-var ref = firebase.database().ref().child("messages");
-$scope.messages = $firebaseArray(ref);
+//var ref = firebase.database().ref().child("messages");
+//$scope.messages = $firebaseObject(ref);
 
 
 
     
-   $scope.add=function(){
+   /*$scope.add=function(){
     $scope.users.$add({
       text: $scope.name,
       email: $scope.email,
       phone: $scope.phone,
       pass: $scope.pass
     });
-   }
+   }*/
+    //$scope.user = {name: user.name, phone: user.phone, email: user.email, password:user.pass};
     
-    var user   = {'name': $scope.name, 'email': $scope.email,'phone': $scope.phone, 'pass': $scope.pass};
+  //var user   = {'name': $scope.name, 'email': $scope.email,'phone': $scope.phone, 'pass': $scope.pass};
+var users ={'phone':$scope.phone, 'password':$scope.pass, 'name':$scope.name, 'email':$scope.email}
 
-    
-linksRef = firebase.database().ref().child('employees');
-linksRef.push(user);
-
-
-
+linksRef = firebase.database().ref();
+linksRef.push(users);
      };
     
-
+alert('Form submitted');
 })
    
 .controller('test1Ctrl',
