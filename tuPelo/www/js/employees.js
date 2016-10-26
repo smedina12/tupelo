@@ -1,7 +1,7 @@
-angular.module('app.employees', [])
+angular.module('app.employees', ['firebase'])
 
 
-.service('Employees', []);
+.service('Employees', ['$firebaseArray'
     
      
      // Might use a resource here that returns a JSON array
@@ -50,6 +50,7 @@ angular.module('app.employees', [])
       return null;
     }
   }
+  
 function ($scope, $stateParams, $firebaseArray, $ionicUser) {
     $scope.data = 
     {
@@ -74,11 +75,11 @@ function ($scope, $stateParams, $firebaseArray, $ionicUser) {
      $scope.data.message='';
     };
     
+    */
     
-    
 
 
 
-}*/
+]);
 
 

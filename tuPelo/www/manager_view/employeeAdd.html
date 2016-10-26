@@ -6,28 +6,28 @@
             <ion-list id="employeeAdd-list2">
                 <label class="item item-input" id="employeeAdd-name">
                     <span class="input-label">Name</span>
-                    <input placeholder="name" type="text" ng-model="name" ng-model-options="{ updateOn: 'blur' }" id="name">
+                    <input placeholder="name" type="text" ng-model="employeeAdd.name" ng-model-options="{ updateOn: 'blur' }" >
                 </label>
                 <label class="item item-input" id="employeeAdd-phone">
                     <span class="input-label">Phone number</span>
-                    <input placeholder="ej:676777777" type="tel" ng-model="phone" >
+                    <input placeholder="ej:676777777" type="tel" ng-model="employees.phone" >
                 </label>
                 <label class="item item-input" id="employeeAdd-email">
                     <span class="input-label">Email</span>
-                    <input placeholder="sample@sample.com" type="text" ng-model="email">
+                    <input placeholder="sample@sample.com" type="text" ng-model="employees.email">
                 </label>
                  <label class="item item-input" id="employeeAdd-password">
                     <span class="input-label">Password</span>
-                    <input placeholder="*****" type="password" ng-model="pass">
+                    <input placeholder="*****" type="password" ng-model="employees.pass">
                     
                 </label>
             </ion-list>
             <button id="employeeAdd-button2" class="button button-stable  button-block" ng-click="doClick()">Sign up</button>
         </form>
-                    <pre>Name = "{{name}}"</pre>
-                     <pre>Phone = "{{phone}}"</pre>
-                     <pre>Email = "{{email}}"</pre>
-                     <pre>Password = "{{pass}}"</pre>
+                    <pre>Name = "{{employees.name}}"</pre>
+                     <pre>Phone = "{{employees.phone}}"</pre>
+                     <pre>Email = "{{employees.email}}"</pre>
+                     <pre>Password = "{{employees.pass}}"</pre>
                 
     </ion-content>
 </ion-view>

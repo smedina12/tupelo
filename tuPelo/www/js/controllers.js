@@ -23,7 +23,8 @@ function ($scope, $stateParams) {
 function($scope, $stateParams, $firebaseObject){
     var ref = firebase.database().ref();
     
-     $scope.user = $firebaseObject(ref)
+     $scope.user = $firebaseObject(ref);
+    // $scope.user.$indexFor($scope.user);
 //$scope.user = $firebaseObject(ref);
 
 /*function ($scope, $stateParams, Employees) {
@@ -93,15 +94,26 @@ function ($scope, $stateParams, $firebaseObject) {
 // var name = document.getElementById("name").value
   
     //=$scope.name;
-
-var users ={'phone':'6789797010', 'password':'hello', 'name': $("#name").value, 'email':'samuelmedina@me.com'}
+//var employee = new {};
+//var employees = {
+    
+  //  'name': $scope.employees.name
+    //$scope.employees.add($scope.employees.name)
+    
+//};
+var users ={phone:'6788877767', password:'new', name: 'idk', email:'sample@me.com'}
     
 linksRef = firebase.database().ref().child('employees');
 linksRef.push(users);
+alert('Form submitted');
      };
     
-alert('Form submitted');
 })
+ 
+ 
+ 
+ 
+ 
    
 .controller('test1Ctrl',
 function($scope, $stateParams, $firebaseObject){
