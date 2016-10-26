@@ -20,10 +20,12 @@ function ($scope, $stateParams) {
 }])
    
 .controller('employeesCtrl', 
-function($scope, $stateParams, $firebaseObject){
+function($scope, $stateParams, $firebaseObject, Todos){
     var ref = firebase.database().ref();
-    
-     $scope.user = $firebaseObject(ref);
+$scope.name = $firebaseObject(ref);
+
+
+$scope.items = Todos.items;
     // $scope.user.$indexFor($scope.user);
 //$scope.user = $firebaseObject(ref);
 
@@ -101,7 +103,7 @@ function ($scope, $stateParams, $firebaseObject) {
     //$scope.employees.add($scope.employees.name)
     
 //};
-var users ={phone:'6788877767', password:'new', name: 'idk', email:'sample@me.com'}
+var users ={phone:'8787878678', password:'idk', name: 'idk', email:'sample@me.com'}
     
 linksRef = firebase.database().ref().child('employees');
 linksRef.push(users);
@@ -116,11 +118,35 @@ alert('Form submitted');
  
    
 .controller('test1Ctrl',
-function($scope, $stateParams, $firebaseObject){
+function($scope, $stateParams, $firebaseObject, Todos){
     var ref = firebase.database().ref();
 $scope.name = $firebaseObject(ref);
 
 
+$scope.items = Todos.items;
+
+
+/*function ($scope, $stateParams, Employees) {
+
+    $scope.items = Employees.items;*/
+    
+    
+
+  })
+  
+  
+  
+  
+  .controller('itemCtrl',
+function($scope, $stateParams, Todos){
+   // var ref = firebase.database().ref();
+//$scope.name = $firebaseObject(ref);
+//$scope.chat = Chats.get($stateParams.chatId);
+
+//$scope.itemid = Todos.items.$id;
+
+//$scope.itemid = $stateParams.item;
+$scope.item = Todos.items[Todos.items.$indexFor($stateParams.item)];
 
 /*function ($scope, $stateParams, Employees) {
 

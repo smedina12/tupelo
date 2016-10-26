@@ -2,8 +2,9 @@
   <ion-content>
 <a ui-sref="menu.employeeAdd" id="employees-button1" class="button button-balanced  button-block button-clear icon-left ion-plus-circled">Add new</a>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right">
-       <p>{{user.employees}}</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in items"  ui-sref="menu.item({item:item.$id})">
+       <!--<p>{{user.employees}}</p>-->
+       <h2>{{item.name}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <ion-option-button class="button-assertive" ng-click="remove(item)">

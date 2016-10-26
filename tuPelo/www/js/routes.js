@@ -91,6 +91,15 @@ angular.module('app.routes', [])
       }
     }
   })
+  .state('menu.item', {
+    url: '/items/:item',
+    views: {
+      'side-menu21': {
+        templateUrl: 'manager_view/item.html',
+        controller: 'itemCtrl'
+      }
+    }
+  })
 
 $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
 
@@ -107,7 +116,7 @@ else if(user == 'Customer')
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
+  // Set up the various states which the app can be in
   // Each state's controller can be found in controllers.js
   $stateProvider
     
