@@ -1,5 +1,5 @@
 
-var user = 'Owner';
+var user = 'Employees';
 //var user = 'Customer';
 if(user == 'Owner')
 {
@@ -98,69 +98,8 @@ angular.module('app.routes', [])
         templateUrl: 'manager_view/item.html',
         controller: 'itemCtrl'
       }
-    }angular.module('app.routes', [])
-
-.config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
+    }
     
-  
-
-      .state('employeeMenu.employeeAppointments', {
-    url: '/employeeAppointments',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/employeeAppointments.html',
-        controller: 'employeeAppointmentsCtrl'
-      }
-    }
-  })
-
-  .state('employeeMenu.employeeCalendar', {
-    url: '/employeeCalendar',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/employeeCalendar.html',
-        controller: 'employeeCalendarCtrl'
-      }
-    }
-  })
-
-  .state('employeeMenu.employeeReviews', {
-    url: '/employeeReviews',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/employeeReviews.html',
-        controller: 'employeeReviewsCtrl'
-      }
-    }
-  })
-
-  .state('employeeMenu.employeeCustomerSettings', {
-    url: '/employeeCustomerSettings',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/employeeCustomerSettings.html',
-        controller: 'employeeCustomerSettingsCtrl'
-      }
-    }
-  })
-
-  .state('employeeMenu', {
-    url: '/employeeMenu',
-    templateUrl: 'templates/employeeMenu.html',
-    controller: 'employeeMenuCtrl'
-  })
-
-$urlRouterProvider.otherwise('/employeeMenu/employeeAppointments')
-
-  
-
-});
   })
 
 $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
@@ -278,7 +217,7 @@ else if(user == 'Employees')
     url: '/employeeAppointments',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/employeeAppointments.html',
+        templateUrl: 'employee_view/employeeAppointments.html',
         controller: 'employeeAppointmentsCtrl'
       }
     }
@@ -288,7 +227,7 @@ else if(user == 'Employees')
     url: '/employeeCalendar',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/employeeCalendar.html',
+        templateUrl: 'employee_view/employeeCalendar.html',
         controller: 'employeeCalendarCtrl'
       }
     }
@@ -298,7 +237,7 @@ else if(user == 'Employees')
     url: '/employeeReviews',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/employeeReviews.html',
+        templateUrl: 'employee_view/employeeReviews.html',
         controller: 'employeeReviewsCtrl'
       }
     }
@@ -308,7 +247,7 @@ else if(user == 'Employees')
     url: '/employeeCustomerSettings',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/employeeCustomerSettings.html',
+        templateUrl: 'employee_view/employeeCustomerSettings.html',
         controller: 'employeeCustomerSettingsCtrl'
       }
     }
@@ -316,7 +255,7 @@ else if(user == 'Employees')
 
   .state('employeeMenu', {
     url: '/employeeMenu',
-    templateUrl: 'templates/employeeMenu.html',
+    templateUrl: 'employee_view/employeeMenu.html',
     controller: 'employeeMenuCtrl'
   })
 
