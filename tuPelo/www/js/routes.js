@@ -98,7 +98,69 @@ angular.module('app.routes', [])
         templateUrl: 'manager_view/item.html',
         controller: 'itemCtrl'
       }
+    }angular.module('app.routes', [])
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+    
+  
+
+      .state('employeeMenu.employeeAppointments', {
+    url: '/employeeAppointments',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeAppointments.html',
+        controller: 'employeeAppointmentsCtrl'
+      }
     }
+  })
+
+  .state('employeeMenu.employeeCalendar', {
+    url: '/employeeCalendar',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCalendar.html',
+        controller: 'employeeCalendarCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeReviews', {
+    url: '/employeeReviews',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeReviews.html',
+        controller: 'employeeReviewsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCustomerSettings', {
+    url: '/employeeCustomerSettings',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCustomerSettings.html',
+        controller: 'employeeCustomerSettingsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu', {
+    url: '/employeeMenu',
+    templateUrl: 'templates/employeeMenu.html',
+    controller: 'employeeMenuCtrl'
+  })
+
+$urlRouterProvider.otherwise('/employeeMenu/employeeAppointments')
+
+  
+
+});
   })
 
 $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
@@ -193,6 +255,72 @@ else if(user == 'Customer')
   })
 
 $urlRouterProvider.otherwise('/loginpage')
+
+  
+
+});
+}
+else if(user == 'Employees')
+{
+  angular.module('app.routes', [])
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+    
+  
+
+      .state('employeeMenu.employeeAppointments', {
+    url: '/employeeAppointments',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeAppointments.html',
+        controller: 'employeeAppointmentsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCalendar', {
+    url: '/employeeCalendar',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCalendar.html',
+        controller: 'employeeCalendarCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeReviews', {
+    url: '/employeeReviews',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeReviews.html',
+        controller: 'employeeReviewsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu.employeeCustomerSettings', {
+    url: '/employeeCustomerSettings',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/employeeCustomerSettings.html',
+        controller: 'employeeCustomerSettingsCtrl'
+      }
+    }
+  })
+
+  .state('employeeMenu', {
+    url: '/employeeMenu',
+    templateUrl: 'templates/employeeMenu.html',
+    controller: 'employeeMenuCtrl'
+  })
+
+$urlRouterProvider.otherwise('/employeeMenu/employeeAppointments')
 
   
 
