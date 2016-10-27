@@ -21,17 +21,12 @@ function ($scope, $stateParams) {
    
 .controller('employeesCtrl', 
 function($scope, $stateParams, $firebaseObject, Todos){
-    var ref = firebase.database().ref();
-$scope.name = $firebaseObject(ref);
+  //  var ref = firebase.database().ref();
+//$scope.name = $firebaseObject(ref);
 
 
 $scope.items = Todos.items;
-    // $scope.user.$indexFor($scope.user);
-//$scope.user = $firebaseObject(ref);
 
-/*function ($scope, $stateParams, Employees) {
-
-    $scope.items = Employees.items;*/
     
     
 
@@ -70,9 +65,23 @@ function ($scope, $stateParams) {
 }])
    
 .controller('employeeAddCtrl',
-function ($scope, $stateParams, $firebaseObject) {
+function ($scope, $stateParams, $firebaseObject, Todos) {
+    
+    $scope.data = {
+        'name': '',
+        'email': '',
+        'phone': '',
+        'pass': ''
+        
+    };
+    $scope.addItem = function(){
+        Todos.addItem($scope.data.name, $scope.data.email, $scope.data.pass, $scope.data.phone);
+        alert('Form submitted');
+    };
     
      $scope.doClick = function () {
+         
+
     
  
   
@@ -103,11 +112,11 @@ function ($scope, $stateParams, $firebaseObject) {
     //$scope.employees.add($scope.employees.name)
     
 //};
-var users ={phone:'8787878678', password:'idk', name: 'idk', email:'sample@me.com'}
+//var users ={phone:'8787878678', password:'idk', name: 'idk', email:'sample@me.com'}
     
-linksRef = firebase.database().ref().child('employees');
-linksRef.push(users);
-alert('Form submitted');
+//linksRef = firebase.database().ref().child('employees');
+//linksRef.push(users);
+
      };
     
 })

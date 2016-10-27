@@ -23,7 +23,24 @@ angular.module('todos',['firebase'])
     var items = $firebaseArray(ref);
     
     var todos = {
-    'items': items
+    'items': items,
+    addItem: function(name, email, phone, password)
+    {
+        items.$add({
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'password':password,
+            'finished': false
+            
+        });
+        
+    },
+    setFinished:function(item, newV)
+    {
+     item.finished = newV;
+     item.$save(item);
+    }
         
     }
     return todos;
