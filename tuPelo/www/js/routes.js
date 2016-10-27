@@ -110,7 +110,7 @@ $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
 
 else if(user == 'Customer')
 {
- angular.module('app.routes', ['Items'])
+ angular.module('app.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -180,6 +180,16 @@ else if(user == 'Customer')
     url: '/hairstylistpage',
     templateUrl: 'customer_view/hairstylist.html',
     controller: 'hairstylistCtrl'
+  })
+  
+  .state('tabsController.item', {
+    url: '/items/:item',
+    views: {
+      'side-menu21': {
+        templateUrl: 'manager_view/item.html',
+        controller: 'itemCtrl'
+      }
+    }
   })
 
 $urlRouterProvider.otherwise('/loginpage')

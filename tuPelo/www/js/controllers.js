@@ -20,7 +20,7 @@ function ($scope, $stateParams) {
 }])
    
 .controller('employeesCtrl', 
-function($scope, $stateParams, $firebaseObject, Todos){
+function($scope, $stateParams, Todos){
   //  var ref = firebase.database().ref();
 //$scope.name = $firebaseObject(ref);
 
@@ -265,11 +265,14 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('hairstylistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('hairstylistCtrl', 
+function($scope, $stateParams, Todos){
 
+$scope.items = Todos.items;
 
-}])
+    
+    
+
+  })
+
  
