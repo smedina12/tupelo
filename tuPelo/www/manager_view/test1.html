@@ -5,6 +5,30 @@
         <i class="icon ion-chevron-right icon-accessory"></i>
         
          <!--<h2>{{name.first}}</h2>-->
+         
+            <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Ionic Calendar Demo</h1>
+      </ion-header-bar>
+      <ion-content>
+				
+				<div class="card" ng-repeat="event in events">
+					<div class="item item-divider">
+						{{event.title}}
+					</div>					
+					<div class="item item-text-wrap">
+						{{ event.description }}
+						<p/>
+						<strong>When: {{ event.date | date:'short' }}</strong>
+												
+						<p ng-if="event.status">This event is added to your calendar already!</p>
+						<button ng-if="!event.status" ng-click="addEvent(event,$index)" class="button button-block button-balanced">Add to Calendar</button>
+												
+					</div>
+				</div>
+				
+      </ion-content>
+    </ion-pane>
                                                                               
         <!--<ion-option-button class="button-assertive">-->
         </ion-option-button>

@@ -40,30 +40,36 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('myCalendarCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-    
-    $scope.eventSources = [];
-    
-     $scope.uiConfig = {
-      calendar:{
-        height: 450,
-        editable: true,
-        header:{
-          left: 'month basicWeek basicDay agendaWeek agendaDay',
-          center: 'title',
-          right: 'today prev,next'
-        },
-        eventClick: $scope.alertEventOnClick,
-        eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize
-      }
-    };
+.controller('myCalendarCtrl', 
+function($scope, Events,$ionicPlatform,$cordovaCalendar,$timeout) {
+	
+	$ionicPlatform.ready(function() {
+		Events.get().then(function(events) {
+			//console.log("events", JSON.stringify(events));	
+			$scope.events = events;
+		});
+	});
+	
+	$scope.addEvent = function(event,idx) {
+		console.log("add ",event);
+		
+		Events.add(event).then(function(result) {
+			console.log("done adding event, result is "+result);
+			if(result === 1) {
+				//update the event
+				$timeout(function() {
+					$scope.events[idx].status = true;
+					$scope.$apply();
+				});
+			} else {
+				//For now... maybe just tell the user it didn't work?
+			}
+		});
 
-
-}])
+		
+	};
+	
+})
    
 .controller('detailedCalendarCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -144,22 +150,35 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
  
    
 .controller('test1Ctrl',
-function($scope, $stateParams, $firebaseObject, Todos){
-    var ref = firebase.database().ref();
-$scope.name = $firebaseObject(ref);
+function($scope, Events,$ionicPlatform,$cordovaCalendar,$timeout) {
+	
+	$ionicPlatform.ready(function() {
+		Events.get().then(function(events) {
+			//console.log("events", JSON.stringify(events));	
+			$scope.events = events;
+		})
+	})
+	
+	$scope.addEvent = function(event,idx) {
+		console.log("add ",event);
+		
+		Events.add(event).then(function(result) {
+			console.log("done adding event, result is "+result);
+			if(result === 1) {
+				//update the event
+				$timeout(function() {
+					$scope.events[idx].status = true;
+					$scope.$apply();
+				});
+			} else {
+				//For now... maybe just tell the user it didn't work?
+			}
+		});
 
-
-$scope.items = Todos.items;
-
-
-/*function ($scope, $stateParams, Employees) {
-
-    $scope.items = Employees.items;*/
-    
-    
-
-  })
-  
+		
+	};
+	
+})
   
   
   

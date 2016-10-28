@@ -8,6 +8,6 @@
     "angular": "~1.4.x"
   },
   "dependencies": {
-    "angular-ui-calendar": "^1.0.2"
-  }
+    "angular-ui-calendar": "latest"
+}
 }

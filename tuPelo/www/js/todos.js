@@ -1,9 +1,9 @@
-angular.module('todos',['firebase'])
+angular.module('app.todos',['firebase'])
 
     
 
 
-.service('Todos', ['$firebaseArray',function($firebaseArray){
+.service('Todos', ['$firebaseArray',function($firebaseArray, $scope){
     
     
     
@@ -46,5 +46,11 @@ angular.module('todos',['firebase'])
         
     }
     return todos;
+    
+    
+
+
+
+
 }])
 
