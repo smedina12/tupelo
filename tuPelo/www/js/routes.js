@@ -1,5 +1,5 @@
 
-var user = 'Employees';
+var user = 'Owner';
 //var user = 'Customer';
 if(user == 'Owner')
 {

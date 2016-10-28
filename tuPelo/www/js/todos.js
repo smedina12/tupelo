@@ -5,6 +5,8 @@ angular.module('todos',['firebase'])
 
 .service('Todos', ['$firebaseArray',function($firebaseArray){
     
+    
+    
     /*var items = [
      {
          'title': 'Testing Item 1',
