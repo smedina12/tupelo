@@ -1,7 +1,67 @@
 
-var user = 'Owner';
+
+
+
+var user = 'Signin';
 //var user = 'Customer';
-if(user == 'Owner')
+if(user == 'Signin')
+{
+angular.module('app.routes', [])
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+    
+  
+
+      .state('tabsController.info', {
+    url: '/info',
+    views: {
+      'tab1': {
+        templateUrl: 'SignIn_view/info.html',
+        controller: 'infoCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.logIn', {
+    url: '/login',
+    views: {
+      'tab2': {
+        templateUrl: 'SignIn_view/logIn.html',
+        controller: 'logInCtrl'
+      }
+    }
+  })
+
+  .state('tabsController', {
+    url: '/page1',
+    templateUrl: 'SignIn_view/tabsController.html',
+    abstract:true
+  })
+
+  .state('tabsController.signup', {
+    url: '/signup',
+    views: {
+      'tab3': {
+        templateUrl: 'SignIn_view/signup.html',
+        controller: 'signupCtrl'
+      }
+    }
+  })
+
+$urlRouterProvider.otherwise('/page1/login')
+
+  
+
+});  
+}
+
+else if(user == 'Owner')
 {
 
 angular.module('app.routes', [])
