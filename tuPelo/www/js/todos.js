@@ -54,3 +54,37 @@ angular.module('app.todos',['firebase'])
 
 }])
 
+angular.module('app.signin', [])
+
+.factory('SignIn', function($scope)
+{
+  
+  var add =[];
+  
+  var admin = [];
+	admin.push(
+		{
+			"id":"6789797010",
+			"password":"hello"
+		}	
+	);
+	add.push(admin);
+  
+  var customer = [];
+  customer.push(
+    {
+      "id":"4045525183",
+			"password":"hello"
+    }
+    );
+    add.push(customer);
+  var employee = [];
+  employee.push(
+    {
+      "id":"6789797020",
+			"password":"hello"
+    }
+    );
+    add.push(employee);
+  return add;
+});
