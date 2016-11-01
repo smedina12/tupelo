@@ -1,21 +1,4 @@
 # tupelo
-This is a software development project for a hair salon and barbershop 
-This is a test
-This is just another test. 
-This is just another test. 
-This is just another test. 
-<<<<<<< HEAD
-This is just another test.
-
 This is a test from soheb..
 =======
-This is just another test. 
-test
-testing..
-<<<<<<< HEAD
->>>>>>> dev
-=======
-This is just another test.
-
-This is a test from soheb..
->>>>>>> dev
+#Update 10/31/2016: we'll use the localStorage to save user-login info.(Quan)
