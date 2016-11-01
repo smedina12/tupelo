@@ -1,7 +1,6 @@
 {
   "name": "fullcalendar",
   "title": "FullCalendar",
-  "version": "2.7.3",
   "description": "Full-sized drag & drop event calendar",
   "keywords": [
     "calendar",
@@ -23,17 +22,8 @@
   },
   "copyright": "2016 Adam Shaw",
   "dependencies": {
-    "jquery": ">=1.7.1",
-    "moment": ">=2.5.0"
-  },
-  "devDependencies": {
-    "jquery-ui": ">=1.11.1",
-    "jquery-simulate": "~1.0.1",
-    "jasmine-jquery": "~2.0.3",
-    "jasmine-fixture": "~1.2.0",
-    "moment-timezone": "~0.2.1",
-    "bootstrap": "~3.2.0",
-    "jquery-mockjax": "~2.1.1"
+    "jquery": ">=2.0.0",
+    "moment": ">=2.9.0"
   },
   "main": [
     "dist/fullcalendar.js",
