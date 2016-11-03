@@ -35,8 +35,7 @@ angular.module('app.signin', [])
 
 
 
-var user = 'sam';
-//var user = 'Customer';
+var user = 'idk';
 
 angular.module('app.routes', [])
 
@@ -181,89 +180,95 @@ $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
 
 if(user == 'Customer')
 {
- angular.module('app.routes', [])
+angular.module('app.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in
+  // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
     
   
 
-      .state('tabsController.signUp', {
-    url: '/page2',
-    views: {
-      'tab1': {
-        templateUrl: 'customer_view/signUp.html',
-        controller: 'signUpCtrl'
-      }
-    }
+      .state('customerMenu', {
+    url: '/customermenu',
+    templateUrl: 'customer_view/customerMenu.html',
+    controller: 'customerMenuCtrl'
   })
 
-  .state('tabsController.cartTabDefaultPage', {
-    url: '/page3',
-    views: {
-      'tab2': {
-        templateUrl: 'customer_view/cartTabDefaultPage.html',
-        controller: 'cartTabDefaultPageCtrl'
-      }
-    }
-  })
-
-  .state('tabsController.cloudTabDefaultPage', {
-    url: '/page4',
-    views: {
-      'tab3': {
-        templateUrl: 'customer_view/cloudTabDefaultPage.html',
-        controller: 'cloudTabDefaultPageCtrl'
-      }
-    }
-  })
-
-  .state('tabsController', {
-    url: '/page1',
-    templateUrl: 'customer_view/tabsController.html',
-    abstract:true
-  })
-
-  .state('customerSignUp', {
-    url: '/signuppage',
-    templateUrl: 'customer_view/customerSignUp.html',
-    controller: 'customerSignUpCtrl'
-  })
-
-  .state('welcomePage', {
-    url: '/welcomepage',
-    templateUrl: 'customer_view/welcomePage.html',
-    controller: 'welcomePageCtrl'
-  })
-
-  .state('login', {
-    url: '/loginpage',
-    templateUrl: 'customer_view/login.html',
-    controller: 'loginCtrl'
-  })
-
-  .state('hairstylist', {
-    url: '/hairstylistpage',
-    templateUrl: 'customer_view/hairstylist.html',
-    controller: 'hairstylistCtrl'
-  })
-  
-  .state('tabsController.item', {
-    url: '/items/:item',
+  .state('customerMenu.chooseAHairstylist', {
+    url: '/choosestylist',
     views: {
       'side-menu21': {
-        templateUrl: 'manager_view/item.html',
-        controller: 'itemCtrl'
+        templateUrl: 'customer_view/chooseAHairstylist.html',
+        controller: 'chooseAHairstylistCtrl'
       }
     }
   })
 
-$urlRouterProvider.otherwise('/loginpage')
+  .state('customerMenu.stylist', {
+    url: '/stylist',
+    views: {
+      'side-menu21': {
+        templateUrl: 'customer_view/stylist.html',
+        controller: 'stylistCtrl'
+      }
+    }
+  })
+
+  .state('customerMenu.calendar', {
+    url: '/customercalendar',
+    views: {
+      'side-menu21': {
+        templateUrl: 'customer_view/calendar.html',
+        controller: 'calendarCtrl'
+      }
+    }
+  })
+
+  .state('customerMenu.reviews', {
+    url: '/reviews',
+    views: {
+      'side-menu21': {
+        templateUrl: 'customer_view/reviews.html',
+        controller: 'reviewsCtrl'
+      }
+    }
+  })
+
+  .state('customerMenu.appointmentTime', {
+    url: '/apptime',
+    views: {
+      'side-menu21': {
+        templateUrl: 'customer_view/appointmentTime.html',
+        controller: 'appointmentTimeCtrl'
+      }
+    }
+  })
+
+  .state('customerMenu.appointmentCanceled', {
+    url: '/cancelappointment',
+    views: {
+      'side-menu21': {
+        templateUrl: 'customer_view/appointmentCanceled.html',
+        controller: 'appointmentCanceledCtrl'
+      }
+    }
+  })
+
+  .state('customerMenu.welcomePage', {
+    url: '/customerwelcome',
+    views: {
+      'side-menu21': {
+        templateUrl: 'customer_view/welcomePage.html',
+        controller: 'welcomePageCtrl'
+      }
+    }
+  })
+
+$urlRouterProvider.otherwise('/customermenu/customerwelcome')
 
   
 

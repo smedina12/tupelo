@@ -10,8 +10,6 @@ angular.module('app.controllers', [])
   //});
 
 
-
-
 .controller('settingsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
@@ -32,13 +30,79 @@ $scope.items = Todos.items;
 
   })
    
-.controller('fullCalendarCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('fullCalendarCtrl',  ['$scope',
+function($scope) {  
+    
+    $scope.eventSource = [];
+  $scope.onSelect = function(start, end) {
+   console.log("Event select fired");
+  };
+  $scope.eventClick = function(event, allDay, jsEvent, view) {
+   alert("Event clicked");
+  };
+  $scope.uiConfig = {
+   defaultView: 'agendaWeek',
+   disableDragging: true,
+   allDaySlot: false,
+   selectable: true,
+   unselectAuto: true,
+   selectHelper: true,
+   editable: false,
+   maxTime: "21:00:00",
+   minTime: "8:00:00",
+   eventDurationEditable: false, // disabling will show resize
+   columnFormat: {
+    week: 'dd-MM-yyyy',
+    day: 'D-MMM-YYYY'
+   },
+   height: 1550,
+   maxTime: "21:00:00",
+   minTime: "8:00:00",
+   eventDurationEditable: false, // disabling will show resize
+   columnFormat: {
+    week: 'dd',
+    day: 'D'
+   },
+   titleFormat: {
+    day: 'dd-MM-yyyy'
+   },
+   axisFormat: 'H:mm',
+   weekends: true,
+   header: {
+    left: 'prev',
+    center: '',
+    right: 'next'
+   },
+   select: $scope.onSelect,
+   eventClick: $scope.eventClick,
+   events: [{
+    "id": "8",
+    "title": "Adam Scott",
+    "start": "2016-11-02 10:30:00",
+    "end": "2016-11-02 12:00:00",
+    "allDay": false,
+    "color": "#734187"
+   }]
+  };
 
+ }
+])
 
-}])
+.directive('disableTap', function($timeout) {
+ return {
+   link: function() {
+
+     $timeout(function() {
+       var tab = document.getElementsByClassName('fc-widget-content');
+
+       for (i = 0; i < tab.length; ++i) {
+  tab[i].setAttribute('data-tap-disabled', 'true')
+   console.log(tab[i]);
+}
+        },500);
+   }
+ };
+})
    
 .controller('myCalendarCtrl', 
 function($scope, Events,$ionicPlatform,$timeout) {
@@ -160,7 +224,7 @@ function($scope) {
    alert("Event clicked");
   };
   $scope.uiConfig = {
-   defaultView: 'agendaDay',
+   defaultView: 'agendaWeek',
    disableDragging: true,
    allDaySlot: false,
    selectable: true,
@@ -179,8 +243,8 @@ function($scope) {
    minTime: "8:00:00",
    eventDurationEditable: false, // disabling will show resize
    columnFormat: {
-    week: 'dd-MM-yyyy',
-    day: 'D-MMM-YYYY'
+    week: 'dd',
+    day: 'D'
    },
    titleFormat: {
     day: 'dd-MM-yyyy'
@@ -197,8 +261,8 @@ function($scope) {
    events: [{
     "id": "8",
     "title": "Adam Scott",
-    "start": "2014-08-20 10:30:00",
-    "end": "2014-08-20 12:00:00",
+    "start": "2016-11-02 10:30:00",
+    "end": "2016-11-02 12:00:00",
     "allDay": false,
     "color": "#734187"
    }]
@@ -287,9 +351,8 @@ function ($scope, $stateParams) {
 
 }])
 
-
-
-.controller('signUpCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+  
+.controller('customerMenuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
@@ -297,7 +360,7 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('cartTabDefaultPageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('chooseAHairstylistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
@@ -305,15 +368,7 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('cloudTabDefaultPageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-      
-.controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('stylistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
@@ -321,7 +376,31 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('customerSignUpCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('calendarCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('reviewsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('appointmentTimeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('appointmentCanceledCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
@@ -336,14 +415,7 @@ function ($scope, $stateParams) {
 
 
 }])
-   
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
+ 
    
 .controller('hairstylistCtrl', 
 function($scope, $stateParams, Todos){
