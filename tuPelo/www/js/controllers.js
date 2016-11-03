@@ -41,7 +41,7 @@ function ($scope, $stateParams) {
 }])
    
 .controller('myCalendarCtrl', 
-function($scope, Events,$ionicPlatform,$cordovaCalendar,$timeout) {
+function($scope, Events,$ionicPlatform,$timeout) {
 	
 	$ionicPlatform.ready(function() {
 		Events.get().then(function(events) {
@@ -150,7 +150,7 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
  
    
 .controller('test1Ctrl',
-function($scope, Events,$ionicPlatform,$cordovaCalendar,$timeout) {
+function($scope, Events,$ionicPlatform,$timeout) {
 	
 	$ionicPlatform.ready(function() {
 		Events.get().then(function(events) {

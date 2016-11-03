@@ -1,6 +1,6 @@
 angular.module('app.services', [])
 
-.factory('Events', function($q, $cordovaCalendar) {
+.factory('Events', function($q) {
 
 	//kind of a hack
 	var incrementDate = function (date, amount) {

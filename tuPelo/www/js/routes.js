@@ -35,7 +35,7 @@ angular.module('app.signin', [])
 
 
 
-var user = 'SignIn';
+var user = 'sam';
 //var user = 'Customer';
 
 angular.module('app.routes', [])

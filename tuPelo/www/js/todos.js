@@ -34,7 +34,6 @@ angular.module('app.todos',['firebase'])
             'phone': phone,
             'password':password,
             'finished': false
-            
         });
         
     },
