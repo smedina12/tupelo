@@ -149,34 +149,78 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
  
  
    
-.controller('test1Ctrl',
-function($scope, Events,$ionicPlatform,$timeout) {
-	
-	$ionicPlatform.ready(function() {
-		Events.get().then(function(events) {
-			//console.log("events", JSON.stringify(events));	
-			$scope.events = events;
-		})
-	})
-	
-	$scope.addEvent = function(event,idx) {
-		console.log("add ",event);
-		
-		Events.add(event).then(function(result) {
-			console.log("done adding event, result is "+result);
-			if(result === 1) {
-				//update the event
-				$timeout(function() {
-					$scope.events[idx].status = true;
-					$scope.$apply();
-				});
-			} else {
-				//For now... maybe just tell the user it didn't work?
-			}
-		});
+.controller('test1Ctrl', ['$scope',
+function($scope) {  
+    
+    $scope.eventSource = [];
+  $scope.onSelect = function(start, end) {
+   console.log("Event select fired");
+  };
+  $scope.eventClick = function(event, allDay, jsEvent, view) {
+   alert("Event clicked");
+  };
+  $scope.uiConfig = {
+   defaultView: 'agendaDay',
+   disableDragging: true,
+   allDaySlot: false,
+   selectable: true,
+   unselectAuto: true,
+   selectHelper: true,
+   editable: false,
+   maxTime: "21:00:00",
+   minTime: "8:00:00",
+   eventDurationEditable: false, // disabling will show resize
+   columnFormat: {
+    week: 'dd-MM-yyyy',
+    day: 'D-MMM-YYYY'
+   },
+   height: 1550,
+   maxTime: "21:00:00",
+   minTime: "8:00:00",
+   eventDurationEditable: false, // disabling will show resize
+   columnFormat: {
+    week: 'dd-MM-yyyy',
+    day: 'D-MMM-YYYY'
+   },
+   titleFormat: {
+    day: 'dd-MM-yyyy'
+   },
+   axisFormat: 'H:mm',
+   weekends: true,
+   header: {
+    left: 'prev',
+    center: '',
+    right: 'next'
+   },
+   select: $scope.onSelect,
+   eventClick: $scope.eventClick,
+   events: [{
+    "id": "8",
+    "title": "Adam Scott",
+    "start": "2014-08-20 10:30:00",
+    "end": "2014-08-20 12:00:00",
+    "allDay": false,
+    "color": "#734187"
+   }]
+  };
 
-		
-	};
+ }
+])
+
+.directive('disableTap', function($timeout) {
+ return {
+   link: function() {
+
+     $timeout(function() {
+       var tab = document.getElementsByClassName('fc-widget-content');
+
+       for (i = 0; i < tab.length; ++i) {
+  tab[i].setAttribute('data-tap-disabled', 'true')
+   console.log(tab[i]);
+}
+        },500);
+   }
+ };
 	
 })
   

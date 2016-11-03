@@ -1,16 +1,15 @@
-<ion-view view-title="Items">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right"  type="item-text-wrap" >
-        <i class="icon ion-chevron-right icon-accessory"></i>
-        
-         <!--<h2>{{name.first}}</h2>-->
-         
-         <calendar calendar-mode="mode" event-source="eventSource">
-                                                                              
-        <!--<ion-option-button class="button-assertive">-->
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-view>
+<ion-nav-view></ion-nav-view>
+    <ion-nav-view name="menuContent" animation="slide-right-left"></ion-nav-view>
+
+    <ion-view >
+    <ion-nav-bar>
+     <h1 class="title"><b>Calendar Scroll Issue</b></h1>
+    </ion-nav-bar>
+    <ion-content scroll="true" has-bouncing="false" class="showScroll">
+            <div class="row">
+            	<div class="col col-100" >
+              <div scroll="true"  ui-calendar="uiConfig" class="calendar target" ng-model="eventSource" id="dayCalendar" calendar="dayCalendar"></div>
+              </div>
+             </div>
+     </ion-content>
+    </ion-view>

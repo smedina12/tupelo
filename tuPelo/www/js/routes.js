@@ -171,6 +171,8 @@ angular.module('app.routes', [])
     }
     
   })
+  
+    
 
 $urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
 

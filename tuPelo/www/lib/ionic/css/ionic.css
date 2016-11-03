@@ -9750,3 +9750,166 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
     background-color: #777;
 }
+
+
+
+
+.grid-header {
+    background-color:#aaa;
+    background-size: 34px;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    box-shadow: 0 0 3px 0;
+    position: fixed;
+    top:43px;
+    display:block;
+    z-index:1035;
+}
+
+
+.grid-header-labels {
+    padding-left: 60px;
+}
+.grid-header-label {
+    width:120px;
+    float: left;
+    padding: 10px 5px;
+    height: 40px;
+    text-align: center;
+    background: #009d97;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+
+
+
+.grid-header-label-divider{
+    border-right: 1px solid #cbcbcb;
+    position: static ;
+    right:0;
+    bottom:0;
+    height:22px;
+}
+
+.grid-header-Clock {
+       text-align:left;
+  background-color:#aaa;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    font-size:40px;
+}
+
+.grid-body {
+
+    position: absolute;
+    top: 40px !important;
+    background: #f7f7f7;
+}
+.ui-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.grid-times-holder {
+    position: absolute;
+    overflow: hidden;
+    width: 60px;
+    top: 0;
+    display:block;
+    z-index: 200;
+    border-right: 1px solid #ddd;
+    background: #eee;
+    text-align: center;
+}
+.grid-date-holder {
+    position: absolute;
+    overflow: hidden;
+    left:60px;
+    top:0px;
+    display:block;
+    z-index: 200;
+    border-right: 1px solid #ddd;
+    background: #eee;
+    text-align: center;
+}
+
+.day-label{
+    height: 24px;
+    line-height: 25px;
+  
+    border-bottom: 1px solid #a6a8ab;
+    color: #57585a;
+    background-color: #CBCBCB;
+}
+.grid-time-label {
+     height: 50px; 
+    top:10px;
+    line-height: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 0;
+}
+.grid-times {
+  }
+.grid-body-labels {
+    padding-left: 0px;
+}
+.grid-body-cell {
+    width:110px;
+    float: left;
+    padding: 10px 5px;
+    height: 50px; 
+    line-height: 49px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 0;
+
+    text-align: center;
+    color: #fff;
+    background-color:#fff;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #ddd;
+}
+.grid-sessions {
+    position: relative;
+    min-width:100%;
+}
+.grid-sessions-day {
+    position: relative;
+    height: 1525px;
+    background: url(https://farm9.staticflickr.com/8617/16121120332_0c7b48b7c4_o.png) 60px 25px;
+    min-width: 100%;
+}
+
+.grid-session-cell {
+    position: absolute;
+    width: 118px;
+    overflow: hidden;
+    border: 1px solid #bbb;
+    font-size: 12px;
+    cursor: pointer;
+    background: rgba(0,157,151,.85);
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.grid-session-icon {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size:24px;
+}
+.grid-session-title{
+    padding:9px;
+    padding-right:10px;
+    font-weight:bold;
+}
+.grid-session-time{
+    padding:9px;
+}
