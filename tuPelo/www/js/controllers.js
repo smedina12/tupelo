@@ -63,15 +63,13 @@ function($scope) {
     week: 'dd',
     day: 'D'
    },
-   titleFormat: {
-    day: 'dd-MM-yyyy'
-   },
+    titleFormat: 'MMM',
    axisFormat: 'H:mm',
    weekends: true,
    header: {
-    left: 'prev',
-    center: '',
-    right: 'next'
+    left: 'prev agendaWeek',
+    center: 'title today',
+    right: 'month next'
    },
    select: $scope.onSelect,
    eventClick: $scope.eventClick,
