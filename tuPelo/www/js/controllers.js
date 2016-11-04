@@ -34,8 +34,14 @@ $scope.items = Todos.items;
 function($scope) {  
     
     $scope.eventSource = [];
-  $scope.onSelect = function(start, end) {
+  $scope.OnSelect = function(start, end) {
+      
+      
+      
    console.log("Event select fired");
+   
+   
+   
   };
   $scope.eventClick = function(event, allDay, jsEvent, view) {
    alert("Event clicked");
@@ -63,13 +69,13 @@ function($scope) {
     week: 'dd',
     day: 'D'
    },
-    titleFormat: 'MMM',
+    titleFormat: 'MMM-YY',
    axisFormat: 'H:mm',
    weekends: true,
    header: {
-    left: 'prev agendaWeek',
-    center: 'title today',
-    right: 'month next'
+    left: ' agendaWeek today month',
+    center: 'title',
+    right: 'prev next '
    },
    select: $scope.onSelect,
    eventClick: $scope.eventClick,
