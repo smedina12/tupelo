@@ -1,6 +1,39 @@
 angular.module('app.todos',['firebase'])
 
+.service('Weeks', ['$firebaseArray', function( $firebaseArray, $scope){
+      
+       var ref = firebase.database().ref().child('OperationTimes');
+      var ref2 = ref.child('days');
+      var days = $firebaseArray(ref);
+      var weekList = [
+    { text: "Monday", checked: true, },
+    { text: "Tuesday", checked: false },
+    { text: "Wednesday", checked: false },
+    { text: "Thursday", checked: false },
+    { text: "Friday", checked: false },
+    { text: "Saturday", checked: false },
+    { text: "Sunday", checked: false }
+  ];
+  var weeks = {
+    'weekList': weekList,
     
+    addDays: function(from, to)
+    {
+        ref2.set({
+          Monday: {
+        times: {
+            'from': from,
+            'to': to
+        }
+            
+          }
+        });
+        
+    }
+  }
+  return weeks;
+      
+    }])
 
 
 .service('Todos', ['$firebaseArray',function($firebaseArray, $scope){
@@ -30,10 +63,6 @@ angular.module('app.todos',['firebase'])
         
     }
     return todos;
-    
-    
-
-
 
 
 }])

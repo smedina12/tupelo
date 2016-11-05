@@ -1,27 +1,21 @@
 <ion-view title="Hours of Operations" id="page10" style="">
-  <ion-content padding="true" class="has-header">
-    <h3 id="hoursOfOperations-heading7" style="color: rgb(0, 0, 0);">Set days</h3>
-    <div id="hoursOfOperations-container3">
-      <form id="hoursOfOperations-form14" class="list">
-        <ion-checkbox name="Monday" style="">Monday</ion-checkbox>
-        <label class="item item-input" id="hoursOfOperations-input5">
-          <span class="input-label">From</span>
-          <input placeholder="8:00am" type="time">
-        </label>
-        <label class="item item-input" id="hoursOfOperations-input6">
-          <span class="input-label">To:</span>
-          <input placeholder="5:00pm" type="time">
-        </label>
-        <ion-checkbox name="Tuesday" style="">Tuesday</ion-checkbox>
-        <ion-checkbox name="Wednesday" style="">Wednesday</ion-checkbox>
-        <ion-checkbox name="Thursday" style="">Thursday</ion-checkbox>
-        <ion-checkbox name="Friday" style="">Friday</ion-checkbox>
-        <ion-checkbox name="Saturday" style="">Saturday</ion-checkbox>
-        <ion-checkbox name="Sunday" style="">Sunday</ion-checkbox>
-        <div style="margin-right:-20px;">
-          <button id="hoursOfOperations-button16" style="left:-10px;" class="button button-dark  button-full button-clear icon-right ion-android-arrow-dropup">Confirm</button>
-        </div>
-      </form>
+  <ion-header-bar class="bar-positive">
+      <h1 class="title">Checkboxes</h1>
+    </ion-header-bar>
+             
+    <ion-content>
+      
+      <div class="list">
+        
+        <ion-checkbox ng-repeat="item in weekList" ng-model="item.checked"ng-checked="item.checked">
+          <h3>{{ item.text }}</h3>
+        </ion-checkbox>
+        
+        
+        
+     <div style="margin-right:-20px;">
+      <a ui-sref="timeOff" id="settings-button9" style="left:-10px;color:#183BDE;border-radius:-8px -8px -8px -8px;" class="button button-light  button-full button-clear icon-left ion-ios-timer">Set Business Time</a>
     </div>
-  </ion-content>
+      
+    </ion-content>
 </ion-view>

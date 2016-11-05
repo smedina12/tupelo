@@ -179,6 +179,11 @@ $stateProvider
     }
   })
 
+.state('timeOff', {
+    url: '/offtime',
+    templateUrl: 'manager_view/timeOff.html',
+    controller: 'timeOffCtrl'
+  })
   
     
 
