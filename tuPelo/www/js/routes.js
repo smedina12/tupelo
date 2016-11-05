@@ -35,7 +35,7 @@ angular.module('app.signin', [])
 
 
 
-var user = 'Customer';
+var user = 'idk';
 
 angular.module('app.routes', [])
 
@@ -168,6 +168,17 @@ $stateProvider
     }
     
   })
+  
+  .state('menu.hoursOfOperations', {
+    url: '/time',
+    views: {
+      'side-menu21': {
+        templateUrl: 'manager_view/hoursOfOperations.html',
+        controller: 'hoursOfOperationsCtrl'
+      }
+    }
+  })
+
   
     
 

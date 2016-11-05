@@ -1,13 +1,18 @@
 <ion-view title="Settings" id="page1" style="">
-    <ion-content padding="true" class="has-header">
-        <button id="settings-button4" style="border-radius:0px 0px 0px 0px;" class="button button-balanced  button-block button-clear">Edit My Calendar</button>
-        <form id="settings-form2" class="list">
-            <ion-toggle toggle-class="toggle-positive" id="settings-toggle1">Toggle</ion-toggle>
-            <ion-radio id="settings-radio1">Radio</ion-radio>
-            <label class="item item-input" id="settings-input4">
-                <span class="input-label">Input</span>
-                <input placeholder="" type="text">
-            </label>
-        </form>
-    </ion-content>
+  <ion-content padding="true" class="has-header">
+    <div style="margin-right:-20px;">
+      <a ui-sref="menu.hoursOfOperations" id="settings-button9" style="left:-10px;color:#183BDE;border-radius:-8px -8px -8px -8px;" class="button button-light  button-full button-clear icon-left ion-ios-timer">Set Business Time</a>
+    </div>
+    <div style="margin-right:-20px;">
+      <button id="settings-button4" style="left:-10px;color:#2621D9;border-radius:0px 0px 0px 0px;" class="button button-light  button-full button-clear icon-left ion-calendar">Edit My Calendar</button>
+    </div>
+    <form id="settings-form2" class="list">
+      <ion-toggle toggle-class="toggle-positive" id="settings-toggle1">Toggle</ion-toggle>
+      <ion-radio id="settings-radio1">Radio</ion-radio>
+      <label class="item item-input" id="settings-input4">
+        <span class="input-label">Input</span>
+        <input placeholder="" type="text">
+      </label>
+    </form>
+  </ion-content>
 </ion-view>

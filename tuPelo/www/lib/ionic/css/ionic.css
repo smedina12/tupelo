@@ -9921,12 +9921,12 @@ div.scrollmenu a:hover {
 /* checkbox - each time slot */
 .time-slot 				{  }
 .time-slot input 	 { display:none; }
-.time-slot label 	 { 
-  padding:10px 20px; 
+.time-slot label 	 {
+  padding: 10% 20%; 
   color:#FFF; 
   cursor:pointer; 
   background:#EEE; 
-  border-radius:5px; 
+  border-radius:5%; 
 	transition:0.3s ease all;
   -moz-transition:0.3s ease all;
   -webkit-transition:0.3s ease all;

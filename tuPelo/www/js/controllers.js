@@ -160,7 +160,7 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
         
     };
     $scope.addItem = function(){
-        Todos.addItem($scope.data.name, $scope.data.email, $scope.data.pass, $scope.data.phone);
+        Todos.addItem($scope.data.name, $scope.data.email, $scope.data.phone, $scope.data.pass);
         alert('Form submitted');
     };
     
@@ -287,6 +287,14 @@ function($scope) {
 })
   
   
+  .controller('hoursOfOperationsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+  
   
   .controller('itemCtrl',
 function($scope, $stateParams, Todos){
@@ -388,6 +396,41 @@ var ref = firebase.database().ref().child('days');
   
   // three way data binding
   syncObject.$bindTo($scope, 'days');
+  
+  
+  $scope.reset = function() {    
+
+    $firebaseObject(ref).set({
+      monday: {
+        name: 'Monday',
+        slots: {
+          72: {
+            time: '9:00am',
+            booked: false
+          },
+          900: {
+            time: '11:00am',
+            booked: false
+          }
+        }
+      },
+      tuesday: {
+        name: 'Tuesday',
+        slots: {
+          72: {
+            time: '9:00am',
+            booked: false
+          },
+          900: {
+            time: '11:00am',
+            booked: false
+          }
+        }
+      }
+    });    
+  }
+  
+  
   
 })
 .controller('reviewsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
