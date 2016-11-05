@@ -1,4 +1,4 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['firebase'])
 
 
   // With the new view caching in Ionic, Controllers are only called
@@ -35,13 +35,7 @@ function($scope) {
     
     $scope.eventSource = [];
   $scope.OnSelect = function(start, end) {
-      
-      
-      
    console.log("Event select fired");
-   
-   
-   
   };
   $scope.eventClick = function(event, allDay, jsEvent, view) {
    alert("Event clicked");
@@ -380,14 +374,22 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('calendarCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('calendarCtrl', function($scope, $firebaseObject) {
+  
+  // connect to firebase 
+  //var ref = new Firebase("https://tupelo-8d8db.firebaseio.com/days"); 
+  
+  
+var ref = firebase.database().ref().child('days');
+  //var fb = $firebaseObject(ref);
 
-
-}])
-   
+  // sync as object 
+  var syncObject = $firebaseObject(ref);
+  
+  // three way data binding
+  syncObject.$bindTo($scope, 'days');
+  
+})
 .controller('reviewsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName

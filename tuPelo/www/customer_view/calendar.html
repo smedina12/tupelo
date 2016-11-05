@@ -1,5 +1,33 @@
 <ion-view title="Calendar" id="page6">
   <ion-content padding="true" class="has-header">
+    
+<div class="row times">
+    
+  <div class="col-xs-4 text-center" ng-repeat="day in days">
+            
+    <h2>{{ day.name }}</h2>
+    
+    <div class="time-slot" ng-repeat="slot in day.slots">     
+
+      <input type="checkbox" id="{{ day.name }}-{{ $index }}" ng-model="slot.booked" ng-disabled="slot.booked">
+
+      <label for="{{ day.name }}-{{ $index }}">{{ slot.time }}<br>
+        <span ng-if="slot.booked">Booked</span>
+        <span ng-if="!slot.booked">Available</span>
+      </label>
+
+    </div>
+  </div>       
+    
+</div>  
+ 
+  
+<p class="text-center">    
+    <a href="#" class="btn btn-primary">Reset</a>
+  </p>
+</div>
+    
+    
     <a ui-sref="customerMenu.appointmentTime" id="calendar-button3" class="button button-positive  button-block">Confirm Appointment</a>
   </ion-content>
 </ion-view>
