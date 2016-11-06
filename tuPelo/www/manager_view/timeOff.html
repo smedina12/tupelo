@@ -2,12 +2,12 @@
   <ion-content padding="true" class="has-header">
     <h3 id="timeOff-heading13" style="color: rgb(0, 0, 0);">Set your time</h3>
    
-     <div ng-repeat="item in weekList">
-       <h3 ng-show="item.checked == true">{{ item.text }}</h3>
-           <span class="input-label" ng-show="item.checked == true">From:</span>
-         <input  placeholder="8:00am" type="time" ng-show="item.checked == true" ng-model="days.from">
-         <span class="input-label" ng-show="item.checked == true">To:</span>
-        <input placeholder="5:00pm" type="time" ng-show="item.checked == true"   ng-model="days.to"></div>
+     <div ng-repeat="item in weekList" ng-show="item.checked == true">
+       <h3 >{{ item.text }}</h3>
+           <span class="input-label" >From:</span>
+         <input  placeholder="8:00am" type="text" ng-model="days.from" >
+         <span class="input-label" >To:</span>
+        <input placeholder="5:00pm" type="text" ng-model="days.to"></div>
         
         <button id="employeeAdd-button2" class="button button-stable  button-block"  ng-click="addDays()">Submit days</button>
         

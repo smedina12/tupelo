@@ -7,14 +7,14 @@
       
       <div class="list">
         
-        <ion-checkbox ng-repeat="item in weekList" ng-model="item.checked"ng-checked="item.checked">
+        <ion-checkbox ng-repeat="item in weekList" ng-model="item.checked" ng-checked="item.checked">
           <h3>{{ item.text }}</h3>
         </ion-checkbox>
         
         
         
      <div style="margin-right:-20px;">
-      <a ui-sref="timeOff" id="settings-button9" style="left:-10px;color:#183BDE;border-radius:-8px -8px -8px -8px;" class="button button-light  button-full button-clear icon-left ion-ios-timer">Set Business Time</a>
+      <a ui-sref="timeOff" id="settings-button9" style="left:-10px;color:#183BDE;border-radius:-8px -8px -8px -8px;" class="button button-light  button-full button-clear icon-left ion-ios-timer" ng-click="addWeek()">Set Business Time</a>
     </div>
       
     </ion-content>

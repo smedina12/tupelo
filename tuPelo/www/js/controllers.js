@@ -255,6 +255,23 @@ function($scope) {
 .controller('hoursOfOperationsCtrl', function($scope, Weeks) {
 
   $scope.weekList = Weeks.weekList;
+  
+  
+   $scope.data = {
+     mon: "Monday", 
+     tue: "Tuesday",
+     wed: "Wednesday",
+     thu: "Thursday",
+     fri: "Friday",
+     sat: "Saturday",
+     sun: "Sunday"
+       
+   }
+   
+   $scope.addWeek = function(){
+        Weeks.addWeek($scope.data.mon, $scope.data.tue,$scope.data.wed,$scope.data.thu,$scope.data.fri,$scope.data.sat,$scope.data.sun)
+        alert('Form submitted');
+    };
 
   
 })
@@ -264,7 +281,7 @@ function($scope) {
   $scope.weekList = Weeks.weekList;
   
   $scope.days = {
-        'from': '',
+        'from':'',
         'to': ''
     };
     $scope.addDays = function(){

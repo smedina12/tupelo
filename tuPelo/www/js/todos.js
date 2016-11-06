@@ -5,13 +5,14 @@ angular.module('app.todos',['firebase'])
        var ref = firebase.database().ref().child('OperationTimes');
       var ref2 = ref.child('days');
       var days = $firebaseArray(ref);
+      
       var weekList = [
-    { text: "Monday", checked: true, },
+    { text: "Monday", checked: false },
     { text: "Tuesday", checked: false },
     { text: "Wednesday", checked: false },
     { text: "Thursday", checked: false },
     { text: "Friday", checked: false },
-    { text: "Saturday", checked: false },
+    { text: "Saturday", checked: false},
     { text: "Sunday", checked: false }
   ];
   var weeks = {
@@ -24,6 +25,25 @@ angular.module('app.todos',['firebase'])
         times: {
             'from': from,
             'to': to
+        }
+            
+          }
+        });
+        
+    },
+    
+      addWeek: function(mon, tue, wed, thu, fri, sat, sun)
+    {
+        ref2.set({
+          Monday: {
+        times: {
+            'monday': mon,
+            'tuesday': tue,
+            'wednesday': wed,
+            'thursday': thu,
+            'friday': fri,
+            'saturday': sat,
+            'sunday': sun,
         }
             
           }
