@@ -176,12 +176,30 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
  
  
    
-.controller('test1Ctrl', ['$scope',
-function($scope) {  
+.controller('test1Ctrl', ['$scope','$firebaseArray', 
+function($scope, $firebaseArray) {  
+
+      var ref = firebase.database().ref().child('cal');
+      
+      var dates = $firebaseArray(ref);
+
     
     $scope.eventSource = [];
-  $scope.onSelect = function(start, end) {
-   console.log("Event select fired");
+  $scope.onSelect = function(start, end, date) {
+      var startdate = start.toString();
+       var enddate = end.toString();
+       $scope.addApp = function(){
+       ref.set({
+          'startdate': startdate,
+          'enddate': enddate
+            });
+          
+
+   console.log("Event select fired", startdate);
+        alert('Form submitted');
+      };
+  
+   
   };
   $scope.eventClick = function(event, allDay, jsEvent, view) {
    alert("Event clicked");
@@ -191,7 +209,7 @@ function($scope) {
    disableDragging: true,
    allDaySlot: false,
    selectable: true,
-   unselectAuto: true,
+   unselectAuto: false,
    selectHelper: true,
    editable: false,
    maxTime: "21:00:00",
@@ -224,8 +242,8 @@ function($scope) {
    events: [{
     "id": "8",
     "title": "Adam Scott",
-    "start": "2016-11-02 10:30:00",
-    "end": "2016-11-02 12:00:00",
+    "start":dates.startdate,
+    "end":  dates.enddate,
     "allDay": false,
     "color": "#734187"
    }]
@@ -241,7 +259,7 @@ function($scope) {
      $timeout(function() {
        var tab = document.getElementsByClassName('fc-widget-content');
 
-       for (i = 0; i < tab.length; ++i) {
+       for (var i = 0; i < tab.length; ++i) {
   tab[i].setAttribute('data-tap-disabled', 'true')
    console.log(tab[i]);
 }
@@ -415,7 +433,10 @@ function ($scope, $stateParams) {
   //var ref = new Firebase("https://tupelo-8d8db.firebaseio.com/days"); 
   
   
-var ref = firebase.database().ref().child('days');
+var ref = firebase.database().ref().child('Calendar');
+
+var ref2 = ref.child('days');
+
   //var fb = $firebaseObject(ref);
 
   // sync as object 
@@ -424,14 +445,25 @@ var ref = firebase.database().ref().child('days');
   // three way data binding
   syncObject.$bindTo($scope, 'days');
   
+   events: [{
+    "id": "8",
+    "title": "Adam Scott",
+    "start": "2016-11-02 10:30:00",
+    "end": "2016-11-02 12:00:00",
+    "allDay": false,
+    "color": "#734187"
+    }];
+  
   
   $scope.reset = function() {    
 
-    $firebaseObject(ref).set({
+    ref2.set({
       monday: {
         name: 'Monday',
-        slots: {
+        event: {
           72: {
+              id:'8',
+              title: 'title',
             time: '9:00am',
             booked: false
           },
