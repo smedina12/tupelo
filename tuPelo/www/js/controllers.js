@@ -254,18 +254,20 @@ function($scope) {
   
 .controller('hoursOfOperationsCtrl',  function($scope, Weeks, filterFilter, $firebaseArray) {
 
-  //$scope.weekList = Weeks.weekList;
+  $scope.weekList = Weeks.weekList;
   
 
-   $scope.weekList = [
-    { name: "Monday", selected: false },
-    { name: "Tuesday", selected: true},
-    { name: "Wednesday", selected: false },
-    { name: "Thursday", selected: true },
-    { name: "Friday", selected: false },
-    { name: "Saturday", selected: true},
-    { name: "Sunday", selected: false}
+
+    $scope.weekList = [
+    { name: "Monday", selected: true, from:'8:00am',to:'5:00pm' },
+    { name: "Tuesday", selected: false, from:'8:00am',to:'5:00pm'},
+    { name: "Wednesday", selected: true , from:'8:00am',to:'5:00pm'},
+    { name: "Thursday", selected: false, from:'8:00am',to:'5:00pm' },
+    { name: "Friday", selected: false, from:'8:00am',to:'5:00pm' },
+    { name: "Saturday", selected: false, from:'8:00am',to:'5:00pm'},
+    { name: "Sunday", selected: false, from:'8:00am',to:'5:00pm'}
   ];
+    
        // selected days
    $scope.selection = [];
    
@@ -280,16 +282,18 @@ function($scope) {
       return weekList.name;
     });
   }, true);
-  
-  var json = JSON.parse(data);
+
    
    var ref = firebase.database().ref().child('OperationTimes');
       var ref2 = ref.child('days');
    $scope.addWeek = function(){
        ref2.set({
-            SelectedDays: json
+            SelectedDays:  $scope.weekList
             });
         alert('Form submitted');
+        console.log($scope.weekList[0].name);
+        console.log($scope.weekList);
+        console.log($scope.weekList.name);
     };
     
    

@@ -4,45 +4,39 @@ angular.module('app.todos',['firebase'])
       
        var ref = firebase.database().ref().child('OperationTimes');
       var ref2 = ref.child('days');
+      var ref3 = ref2.child('SelectedDays');
       var days = $firebaseArray(ref);
       
-      var weekList = [
-    { text: "Monday", checked: false, id: 1 },
-    { text: "Tuesday", checked: false, id: 2 },
-    { text: "Wednesday", checked: false, id: 3 },
-    { text: "Thursday", checked: false, id: 4 },
-    { text: "Friday", checked: false, id: 5 },
-    { text: "Saturday", checked: false, id: 6},
-    { text: "Sunday", checked: false, id: 7 }
-  ];
+      var weekList = $firebaseArray(ref3);
+      
+     
   var weeks = {
     'weekList': weekList,
     
     addDays: function(from, to)
     {
-        ref2.set({
-          Monday: {
-        times: {
-            'from': from,
-            'to': to
-        }
-            
-          }
-        });
-        
-    },
-    
-      addWeek: function(mon)
-    {
-        ref2.set({
-            Monday: {
-              'from': '8:00am',
-              'to': '5:00pm'
-            }
-          
-        });
+        var newtime = {
+  "from": from,
+  "to": to
+  
+  
+};
+
+var newtime2 = {
+  "from": from,
+  "to": to
+  
+  
+};
+  ref3.child("0").update(newtime);
+  ref3.child("1").update(newtime2);
+  
         
     }
+    
+      
+        
+    
   }
   return weeks;
       

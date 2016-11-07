@@ -7,10 +7,10 @@
       
       
         
-        <ion-checkbox ng-repeat="day in weekList" type="checkbox" name="selectedDays[]" value="{{day.name}}" ng-model="day.selected">
-            {{day.name}}
+        <ion-checkbox ng-repeat="day in weekList track by $index" type="checkbox" name="selectedDays[]" value="{{day.name}}" ng-model="day.selected">
+            <h4>{{day.name}}</h4>
             
-            <pre>{{day|json}}</pre>
+
         </ion-checkbox>
         
         
