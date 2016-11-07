@@ -7,13 +7,13 @@ angular.module('app.todos',['firebase'])
       var days = $firebaseArray(ref);
       
       var weekList = [
-    { text: "Monday", checked: false },
-    { text: "Tuesday", checked: false },
-    { text: "Wednesday", checked: false },
-    { text: "Thursday", checked: false },
-    { text: "Friday", checked: false },
-    { text: "Saturday", checked: false},
-    { text: "Sunday", checked: false }
+    { text: "Monday", checked: false, id: 1 },
+    { text: "Tuesday", checked: false, id: 2 },
+    { text: "Wednesday", checked: false, id: 3 },
+    { text: "Thursday", checked: false, id: 4 },
+    { text: "Friday", checked: false, id: 5 },
+    { text: "Saturday", checked: false, id: 6},
+    { text: "Sunday", checked: false, id: 7 }
   ];
   var weeks = {
     'weekList': weekList,
@@ -32,21 +32,14 @@ angular.module('app.todos',['firebase'])
         
     },
     
-      addWeek: function(mon, tue, wed, thu, fri, sat, sun)
+      addWeek: function(mon)
     {
         ref2.set({
-          Monday: {
-        times: {
-            'monday': mon,
-            'tuesday': tue,
-            'wednesday': wed,
-            'thursday': thu,
-            'friday': fri,
-            'saturday': sat,
-            'sunday': sun,
-        }
-            
-          }
+            Monday: {
+              'from': '8:00am',
+              'to': '5:00pm'
+            }
+          
         });
         
     }

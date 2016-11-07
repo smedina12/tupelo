@@ -5,12 +5,13 @@
              
     <ion-content>
       
-      <div class="list">
+      
         
-        <ion-checkbox ng-repeat="item in weekList" ng-model="item.checked" ng-checked="item.checked">
-          <h3>{{ item.text }}</h3>
+        <ion-checkbox ng-repeat="day in weekList" type="checkbox" name="selectedDays[]" value="{{day.name}}" ng-model="day.selected">
+            {{day.name}}
+            
+            <pre>{{day|json}}</pre>
         </ion-checkbox>
-        
         
         
      <div style="margin-right:-20px;">

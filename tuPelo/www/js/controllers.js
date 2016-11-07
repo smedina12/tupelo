@@ -252,26 +252,50 @@ function($scope) {
 })
   
   
-.controller('hoursOfOperationsCtrl', function($scope, Weeks) {
+.controller('hoursOfOperationsCtrl',  function($scope, Weeks, filterFilter, $firebaseArray) {
 
-  $scope.weekList = Weeks.weekList;
+  //$scope.weekList = Weeks.weekList;
   
-  
-   $scope.data = {
-     mon: "Monday", 
-     tue: "Tuesday",
-     wed: "Wednesday",
-     thu: "Thursday",
-     fri: "Friday",
-     sat: "Saturday",
-     sun: "Sunday"
-       
-   }
+
+   $scope.weekList = [
+    { name: "Monday", selected: false },
+    { name: "Tuesday", selected: true},
+    { name: "Wednesday", selected: false },
+    { name: "Thursday", selected: true },
+    { name: "Friday", selected: false },
+    { name: "Saturday", selected: true},
+    { name: "Sunday", selected: false}
+  ];
+       // selected days
+   $scope.selection = [];
    
+ // helper method to get selected days
+   $scope.selectedDays = function selectedDays() {
+    return filterFilter($scope.weekList, { selected: true });
+  };
+  
+  // watch days for changes
+  $scope.$watch('weekList|filter:{selected:true}', function (nv) {
+    $scope.selection = nv.map(function (weekList) {
+      return weekList.name;
+    });
+  }, true);
+  
+  var json = JSON.parse(data);
+   
+   var ref = firebase.database().ref().child('OperationTimes');
+      var ref2 = ref.child('days');
    $scope.addWeek = function(){
-        Weeks.addWeek($scope.data.mon, $scope.data.tue,$scope.data.wed,$scope.data.thu,$scope.data.fri,$scope.data.sat,$scope.data.sun)
+       ref2.set({
+            SelectedDays: json
+            });
         alert('Form submitted');
     };
+    
+   
+        
+          
+
 
   
 })
