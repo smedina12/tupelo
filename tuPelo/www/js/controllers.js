@@ -76,8 +76,8 @@ function($scope) {
    events: [{
     "id": "8",
     "title": "Adam Scott",
-    "start": "2016-11-02 10:30:00",
-    "end": "2016-11-02 12:00:00",
+    "start": "2016-11-08 11:00:00",
+    "end": "2016-11-09 11:30:00",
     "allDay": false,
     "color": "#734187"
    }]
@@ -182,7 +182,11 @@ function($scope, $firebaseArray) {
       var ref = firebase.database().ref().child('cal');
       
       var dates = $firebaseArray(ref);
-
+      
+      dates.$loaded()
+var later = moment(dates[0]);
+var now = moment(dates[1]);
+//var tem = dates[0].replace('$','');
     
     $scope.eventSource = [];
   $scope.onSelect = function(start, end, date) {
@@ -190,20 +194,25 @@ function($scope, $firebaseArray) {
        var enddate = end.toString();
        $scope.addApp = function(){
        ref.set({
+           title:'same medina',
           'startdate': startdate,
           'enddate': enddate
             });
-          
 
-   console.log("Event select fired", startdate);
-        alert('Form submitted');
       };
+
+
   
    
   };
-  $scope.eventClick = function(event, allDay, jsEvent, view) {
+  
+   console.log("Event select fired", dates.$loaded().$value);
+        alert('Form submitted');
+  $scope.eventClick = function(event, allDay, jsEvent, view, $firebaseArray) {
    alert("Event clicked");
   };
+
+console.log("check", dates, dates);
   $scope.uiConfig = {
    defaultView: 'agendaWeek',
    disableDragging: true,
@@ -239,13 +248,8 @@ function($scope, $firebaseArray) {
    },
    select: $scope.onSelect,
    eventClick: $scope.eventClick,
-   events: [{
-    "id": "8",
-    "title": "Adam Scott",
-    "start":dates.startdate,
-    "end":  dates.enddate,
-    "allDay": false,
-    "color": "#734187"
+   addEventSource: [{
+    dates
    }]
   };
 
@@ -278,7 +282,7 @@ function($scope, $firebaseArray) {
 
     $scope.weekList = [
     { name: "Monday", selected: true, from:'8:00am',to:'5:00pm' },
-    { name: "Tuesday", selected: false, from:'8:00am',to:'5:00pm'},
+    { name: "Tuesday", selected: true, from:'8:00am',to:'5:00pm'},
     { name: "Wednesday", selected: true , from:'8:00am',to:'5:00pm'},
     { name: "Thursday", selected: false, from:'8:00am',to:'5:00pm' },
     { name: "Friday", selected: false, from:'8:00am',to:'5:00pm' },
@@ -444,15 +448,6 @@ var ref2 = ref.child('days');
   
   // three way data binding
   syncObject.$bindTo($scope, 'days');
-  
-   events: [{
-    "id": "8",
-    "title": "Adam Scott",
-    "start": "2016-11-02 10:30:00",
-    "end": "2016-11-02 12:00:00",
-    "allDay": false,
-    "color": "#734187"
-    }];
   
   
   $scope.reset = function() {    
