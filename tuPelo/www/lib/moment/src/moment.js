@@ -1,17 +1,16 @@
 //! moment.js
-//! version : 2.15.2
+//! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
 
 import { hooks as moment, setHookCallback } from './lib/utils/hooks';
 
-moment.version = '2.15.2';
+moment.version = '2.10.6';
 
 import {
     min,
     max,
-    now,
     isMoment,
     momentPrototype as fn,
     createUTC       as utc,
@@ -22,15 +21,9 @@ import {
 } from './lib/moment/moment';
 
 import {
-    getCalendarFormat
-} from './lib/moment/calendar';
-
-import {
     defineLocale,
-    updateLocale,
     getSetGlobalLocale as locale,
     getLocale          as localeData,
-    listLocales        as locales,
     listMonths         as months,
     listMonthsShort    as monthsShort,
     listWeekdays       as weekdays,
@@ -41,7 +34,6 @@ import {
 import {
     isDuration,
     createDuration as duration,
-    getSetRelativeTimeRounding as relativeTimeRounding,
     getSetRelativeTimeThreshold as relativeTimeThreshold
 } from './lib/duration/duration';
 
@@ -54,7 +46,6 @@ setHookCallback(local);
 moment.fn                    = fn;
 moment.min                   = min;
 moment.max                   = max;
-moment.now                   = now;
 moment.utc                   = utc;
 moment.unix                  = unix;
 moment.months                = months;
@@ -70,13 +61,8 @@ moment.isDuration            = isDuration;
 moment.monthsShort           = monthsShort;
 moment.weekdaysMin           = weekdaysMin;
 moment.defineLocale          = defineLocale;
-moment.updateLocale          = updateLocale;
-moment.locales               = locales;
 moment.weekdaysShort         = weekdaysShort;
 moment.normalizeUnits        = normalizeUnits;
-moment.relativeTimeRounding = relativeTimeRounding;
 moment.relativeTimeThreshold = relativeTimeThreshold;
-moment.calendarFormat        = getCalendarFormat;
-moment.prototype             = fn;
 
 export default moment;

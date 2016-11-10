@@ -1,8 +1,5 @@
-import { normalizeUnits, normalizeObjectUnits } from '../units/aliases';
-import { getPrioritizedUnits } from '../units/priorities';
+import { normalizeUnits } from '../units/aliases';
 import { hooks } from '../utils/hooks';
-import isFunction from '../utils/is-function';
-
 
 export function makeGetSet (unit, keepTime) {
     return function (value) {
@@ -17,37 +14,24 @@ export function makeGetSet (unit, keepTime) {
 }
 
 export function get (mom, unit) {
-    return mom.isValid() ?
-        mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]() : NaN;
+    return mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]();
 }
 
 export function set (mom, unit, value) {
-    if (mom.isValid()) {
-        mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
-    }
+    return mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
 }
 
 // MOMENTS
 
-export function stringGet (units) {
-    units = normalizeUnits(units);
-    if (isFunction(this[units])) {
-        return this[units]();
-    }
-    return this;
-}
-
-
-export function stringSet (units, value) {
+export function getSet (units, value) {
+    var unit;
     if (typeof units === 'object') {
-        units = normalizeObjectUnits(units);
-        var prioritized = getPrioritizedUnits(units);
-        for (var i = 0; i < prioritized.length; i++) {
-            this[prioritized[i].unit](units[prioritized[i].unit]);
+        for (unit in units) {
+            this.set(unit, units[unit]);
         }
     } else {
         units = normalizeUnits(units);
-        if (isFunction(this[units])) {
+        if (typeof this[units] === 'function') {
             return this[units](value);
         }
     }

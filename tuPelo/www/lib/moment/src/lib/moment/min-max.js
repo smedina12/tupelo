@@ -1,29 +1,20 @@
 import { deprecate } from '../utils/deprecate';
 import isArray from '../utils/is-array';
 import { createLocal } from '../create/local';
-import { createInvalid } from '../create/valid';
 
 export var prototypeMin = deprecate(
-    'moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/',
-    function () {
-        var other = createLocal.apply(null, arguments);
-        if (this.isValid() && other.isValid()) {
-            return other < this ? this : other;
-        } else {
-            return createInvalid();
-        }
-    }
-);
+     'moment().min is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548',
+     function () {
+         var other = createLocal.apply(null, arguments);
+         return other < this ? this : other;
+     }
+ );
 
 export var prototypeMax = deprecate(
-    'moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/',
+    'moment().max is deprecated, use moment.max instead. https://github.com/moment/moment/issues/1548',
     function () {
         var other = createLocal.apply(null, arguments);
-        if (this.isValid() && other.isValid()) {
-            return other > this ? this : other;
-        } else {
-            return createInvalid();
-        }
+        return other > this ? this : other;
     }
 );
 

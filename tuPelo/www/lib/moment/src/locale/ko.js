@@ -1,7 +1,10 @@
 //! moment.js locale configuration
-//! locale : Korean [ko]
-//! author : Kyungwook, Park : https://github.com/kyungw00k
-//! author : Jeeeyul Lee <jeeeyul@gmail.com>
+//! locale : korean (ko)
+//!
+//! authors
+//!
+//! - Kyungwook, Park : https://github.com/kyungw00k
+//! - Jeeeyul Lee <jeeeyul@gmail.com>
 
 import moment from '../moment';
 
@@ -30,17 +33,17 @@ export default moment.defineLocale('ko', {
     relativeTime : {
         future : '%s 후',
         past : '%s 전',
-        s : '몇 초',
+        s : '몇초',
         ss : '%d초',
         m : '일분',
         mm : '%d분',
-        h : '한 시간',
+        h : '한시간',
         hh : '%d시간',
         d : '하루',
         dd : '%d일',
-        M : '한 달',
+        M : '한달',
         MM : '%d달',
-        y : '일 년',
+        y : '일년',
         yy : '%d년'
     },
     ordinalParse : /\d{1,2}일/,
