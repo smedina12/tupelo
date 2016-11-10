@@ -186,6 +186,9 @@ function($scope, $firebaseArray) {
       dates.$loaded()
 var later = moment(dates[0]);
 var now = moment(dates[1]);
+
+var now = moment(dates[0]);
+var now = moment(dates[0]);
 //var tem = dates[0].replace('$','');
     
     $scope.eventSource = [];
