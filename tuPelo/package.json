@@ -4,6 +4,7 @@
   "description": "tuPelo: An Ionic project",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-ui-bootstrap-datetimepicker": "^2.0.1",
     "angularfire": "^2.0.2",
     "firebase": "^3.5.1",
     "gulp": "^3.5.6",

@@ -135,7 +135,7 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('employeeAddCtrl',
+.controller('employeeAddCtrl','ngLocale',
 function ($scope, $stateParams, $firebaseObject, Todos) {
     
     $scope.data = {
@@ -164,24 +164,65 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
    
   
 
-.controller('test1Ctrl', function($scope) {
+.controller('test1Ctrl', 
+function ($scope, $timeout) {
   $scope.va1 = '123';
       //var ref = firebase.database().ref().child('cal');
       //var dates = $firebaseArray(ref);
-      
- $scope.currentDate = new Date();
-$scope.minDate = new Date(2105, 6, 1);
-$scope.maxDate = new Date(2015, 6, 31);
- 
-$scope.datePickerCallback = function (val) {
-    if (!val) {	
-        console.log('Date not selected');
-    } else {
-        console.log('Selected date is : ', val);
-    }
-};
+      moment.locale('en'); 
+  $scope.dateTimeNow = function() {
+    $scope.date = new Date();
+  };
+  $scope.dateTimeNow();
+  
+  $scope.toggleMinDate = function() {
+    var minDate = new Date();
+    // set to yesterday
+    minDate.setDate(minDate.getDate() - 1);
+    $scope.dateOptions.minDate = $scope.dateOptions.minDate ? null : minDate;
+  };
    
-    
+  $scope.dateOptions = {
+    showWeeks: false,
+    startingDay: 0
+  };
+  
+  $scope.toggleMinDate();
+  
+  // Disable weekend selection
+  $scope.disabled = function(calendarDate, mode) {
+    return mode === 'day' && ( calendarDate.getDay() === 0 || calendarDate.getDay() === 6 );
+  };
+  
+  $scope.open = function($event,opened) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.dateOpened = true;
+  };
+  
+  $scope.dateOpened = false;
+  $scope.hourStep = 1;
+  $scope.format = "dd-MMM-yyyy";
+  $scope.minuteStep = 15;
+
+  $scope.timeOptions = {
+    hourStep: [1, 2, 3],
+    minuteStep: [1, 5, 10, 15, 25, 30]
+  };
+
+  $scope.showMeridian = true;
+  $scope.timeToggleMode = function() {
+    $scope.showMeridian = !$scope.showMeridian;
+  };
+  
+  $scope.$watch("date", function(date) {
+    // read date value
+  }, true);
+  
+  $scope.resetHours = function() {
+    $scope.date.setHours(1);
+  };
+  
 })
 
 

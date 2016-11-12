@@ -5,24 +5,23 @@
 
         
 <ion-content padding="true" class="has-header">
- 
-     <body>
-      2+2={{2+2}}, var1={{var1}}
-      <form class="form-horizontal" novalidate name="form" ng-submit="submit()">
-      <div class="well">
-        <div id="date" class="input-append" datetimez ng-model="var1">
-          <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" id="input1" name="input1"></input>
-          <span class="add-on">
-            <i class="icon ion-android-calendar" data-date-icon="icon-calendar"></i>
-          </span>
-        </div>
-      </div>
-  </form>
-  </body>
 
+ 
+  
+  <div class="dropdown">
+  <i class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <div class="input-group"><input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    </div>
+  </i>
+  <ion-list class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"></datetimepicker>
+  </ion-list>
+</div>
 
 </ion-content>
 
+    <ion-footer-bar>
 
+    </ion-footer-bar>
 
     
