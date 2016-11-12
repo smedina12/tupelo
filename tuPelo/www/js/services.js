@@ -113,3 +113,4 @@ document.addEventListener("deviceready", function () {
 	};
 
 });
+

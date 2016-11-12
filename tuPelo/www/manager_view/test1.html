@@ -1,15 +1,28 @@
 
-    <ion-nav-view name="menuContent" animation="slide-right-left"></ion-nav-view>
+    <ion-header-bar class="bar-positive">
+        <h2 class="title">ion-datetime-picker demo</h2>
+    </ion-header-bar>
 
-    <ion-view>
-    <ion-content scroll="true" has-bouncing="false" class="showScroll">
-            <div class="row">
-            	<div class="col col-100" >
-              <div ui-calendar="calendarOptions" ng-model="eventSources" calendar="dayCalendar"></div>
-              
-              </div>
-             </div>
-             
-             <a id="settings-button9" style="left:-10px;color:#183BDE;border-radius:-8px -8px -8px -8px;" class="button button-light  button-full button-clear icon-left ion-ios-timer" ng-click="addApp()">Set appointment</a>
-     </ion-content>
-    </ion-view>
+        
+<ion-content padding="true" class="has-header">
+ 
+     <body>
+      2+2={{2+2}}, var1={{var1}}
+      <form class="form-horizontal" novalidate name="form" ng-submit="submit()">
+      <div class="well">
+        <div id="date" class="input-append" datetimez ng-model="var1">
+          <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" id="input1" name="input1"></input>
+          <span class="add-on">
+            <i class="icon ion-android-calendar" data-date-icon="icon-calendar"></i>
+          </span>
+        </div>
+      </div>
+  </form>
+  </body>
+
+
+</ion-content>
+
+
+
+    

@@ -1,0 +1,37 @@
+{
+  "name": "ionic-datetime-picker",
+  "version": "1.1.1",
+  "description": "A date and time picker for ionic framework, forked from datepicker-for-ionic",
+  "main": "",
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "_id": "ionic-datetime-picker@1.1.1",
+  "_shasum": "77d83ff0ec3bea534d54682739513abb8b6d5791",
+  "_from": "ionic-datetime-picker@>=1.1.1 <2.0.0",
+  "_npmVersion": "2.14.7",
+  "_nodeVersion": "4.2.2",
+  "_npmUser": {
+    "name": "ishryal",
+    "email": "warren@warrenwilson.com.au"
+  },
+  "dist": {
+    "shasum": "77d83ff0ec3bea534d54682739513abb8b6d5791",
+    "tarball": "https://registry.npmjs.org/ionic-datetime-picker/-/ionic-datetime-picker-1.1.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "ishryal",
+      "email": "warren@warrenwilson.com.au"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/ionic-datetime-picker-1.1.1.tgz_1456886949511_0.8517178057227284"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/ionic-datetime-picker/-/ionic-datetime-picker-1.1.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

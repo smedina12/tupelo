@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "angular-ui-calendar": "^1.0.2",
-    "moment": "^2.15.2"
+    "moment": "^2.15.2",
+    "ionic-datepicker": "^1.2.1",
+    "ion-datetime-picker": "^0.4.1"
   }
 }
