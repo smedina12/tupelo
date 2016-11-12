@@ -74,56 +74,14 @@ var newtime2 = {
 
 }])
 
-angular.module('app.signin', [])
-
-.factory('SignIn', function($scope)
-{
+.service('DateTime', ['$firebaseArray',function($firebaseArray, $scope) {
   
-  var add =[];
-  
-  var admin = [];
-	admin.push(
-		{
-			"id":"6789797010",
-			"password":"hello"
-		}	
-	);
-	add.push(admin);
-  
-  var customer = [];
-  customer.push(
-    {
-      "id":"4045525183",
-			"password":"hello"
-    }
-    );
-    add.push(customer);
-  var employee = [];
-  employee.push(
-    {
-      "id":"6789797020",
-			"password":"hello"
-    }
-    );
-    add.push(employee);
-  return add;
-})
-
-
-.directive('datetimez', function() {
-    return {
-        restrict: 'A',
-        require : 'ngModel',
-        link: function(scope, element, attrs, ngModelCtrl) {
-          element.datetimepicker({
-            dateFormat:'dd/MM/yyyy hh:mm:ss',
-            language: 'pt-BR'
-          }).on('changeDate', function(e) {
-            ngModelCtrl.$setViewValue(e.date);
-            scope.$apply();
-          });
-        }
-    };
-});
+        var ref = firebase.database().ref().child('employees');
+    
+    var date = $firebaseArray(ref);
+    
+    $scope.start = "";
+    $scope.end = "";
+}]);
 
 

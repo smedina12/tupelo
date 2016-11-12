@@ -33,8 +33,14 @@ $scope.items = Todos.items;
 .controller('fullCalendarCtrl',  ['$scope',
 function($scope) {  
     
+    $scope.startDate = "2016-11-12 11:00:00";
+    $scope.endDate = "2016-11-12 11:30:00";
+    
     $scope.eventSource = [];
   $scope.OnSelect = function(start, end) {
+      
+
+      
    console.log("Event select fired");
   };
   $scope.eventClick = function(event, allDay, jsEvent, view) {
@@ -56,8 +62,8 @@ function($scope) {
     day: 'D-MMM-YYYY'
    },
    height: 1550,
-   maxTime: "21:00:00",
-   minTime: "8:00:00",
+   maxTime: "6:00:00",
+   minTime: "9:00:00",
    eventDurationEditable: false, // disabling will show resize
    columnFormat: {
     week: 'dd',
@@ -76,8 +82,8 @@ function($scope) {
    events: [{
     "id": "8",
     "title": "Adam Scott",
-    "start": "2016-11-08 11:00:00",
-    "end": "2016-11-09 11:30:00",
+    "start": $scope.startDate,
+    "end": $scope.endDate,
     "allDay": false,
     "color": "#734187"
    }]
@@ -165,63 +171,15 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
   
 
 .controller('test1Ctrl', 
-function ($scope, $timeout) {
-  $scope.va1 = '123';
+function ($scope, ionicDatePicker) {
+      moment.locale('en'); 
+      
+      //$scope = data.dateDropDownInput
       //var ref = firebase.database().ref().child('cal');
       //var dates = $firebaseArray(ref);
-      moment.locale('en'); 
-  $scope.dateTimeNow = function() {
-    $scope.date = new Date();
-  };
-  $scope.dateTimeNow();
-  
-  $scope.toggleMinDate = function() {
-    var minDate = new Date();
-    // set to yesterday
-    minDate.setDate(minDate.getDate() - 1);
-    $scope.dateOptions.minDate = $scope.dateOptions.minDate ? null : minDate;
-  };
-   
-  $scope.dateOptions = {
-    showWeeks: false,
-    startingDay: 0
-  };
-  
-  $scope.toggleMinDate();
-  
-  // Disable weekend selection
-  $scope.disabled = function(calendarDate, mode) {
-    return mode === 'day' && ( calendarDate.getDay() === 0 || calendarDate.getDay() === 6 );
-  };
-  
-  $scope.open = function($event,opened) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.dateOpened = true;
-  };
-  
-  $scope.dateOpened = false;
-  $scope.hourStep = 1;
-  $scope.format = "dd-MMM-yyyy";
-  $scope.minuteStep = 15;
 
-  $scope.timeOptions = {
-    hourStep: [1, 2, 3],
-    minuteStep: [1, 5, 10, 15, 25, 30]
-  };
+    
 
-  $scope.showMeridian = true;
-  $scope.timeToggleMode = function() {
-    $scope.showMeridian = !$scope.showMeridian;
-  };
-  
-  $scope.$watch("date", function(date) {
-    // read date value
-  }, true);
-  
-  $scope.resetHours = function() {
-    $scope.date.setHours(1);
-  };
   
 })
 

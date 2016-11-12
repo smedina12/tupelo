@@ -12,7 +12,8 @@
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.0.4",
-    "ionic-datetime-picker": "^1.1.1"
+    "ionic-datetime-picker": "^1.1.1",
+    "ionic-native": "^2.2.6"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -32,7 +33,8 @@
     "cordova-plugin-splashscreen@~4.0.0",
     "cordova-plugin-statusbar@~2.2.0",
     "ionic-plugin-keyboard@~2.2.1",
-    "cordova-plugin-camera"
+    "cordova-plugin-camera",
+    "cordova-plugin-datepicker"
   ],
   "cordovaPlatforms": []
 }

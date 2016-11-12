@@ -9,8 +9,6 @@
  * @author        Dale "Ducky" Lotts
  * @since        2013-Jul-8
  */
- 
- 
 
 ;(function (root, factory) {
   'use strict'
@@ -450,7 +448,7 @@
     var defaultConfiguration = {
       configureOn: null,
       dropdownSelector: null,
-      minuteStep: 5,
+      minuteStep: 30,
       minView: 'minute',
       modelType: 'Date',
       parseFormat: 'YYYY-MM-DDTHH:mm:ss.SSSZZ',
@@ -578,5 +576,3 @@
     }
   }
 })); // eslint-disable-line semi
-
-

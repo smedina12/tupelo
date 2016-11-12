@@ -8,7 +8,7 @@
 
 angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services','firebase', 'app.todos','ui.calendar','ion-datetime-picker', 
 'ionic-datetimepicker','ui.bootstrap.datetimepicker',
-    'ui.dateTimeInput'])
+    'ui.dateTimeInput', 'ionic-datepicker'])
 
 
 
