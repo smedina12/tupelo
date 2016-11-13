@@ -80,8 +80,17 @@ var newtime2 = {
     
     var date = $firebaseArray(ref);
     
-    $scope.start = "";
-    $scope.end = "";
+      var times = {
+    'start': "2016-11-12 12:00:00",
+    'end': "2016-11-12 12:30:00",
+    
+};
+    return times;
+
+
+    
+    
+    
 }]);
 
 

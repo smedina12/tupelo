@@ -31,10 +31,18 @@ $scope.items = Todos.items;
   })
    
 .controller('fullCalendarCtrl',  ['$scope',
-function($scope) {  
+function($scope, DateTime) {
     
-    $scope.startDate = "2016-11-12 11:00:00";
-    $scope.endDate = "2016-11-12 11:30:00";
+   //$scope.uiConfig.fullCalendar( 'renderEvent', event  );
+    //$('#calendar').fullCalendar('renderEvent', {
+      // title: 'My Event 2',
+       //start: "2016-11-12 12:00:00",
+       //end: "2016-11-12 12:30:00"
+//});
+       //renderEvent(DateTime);
+    
+    //$scope.startDate = DateTime.times;
+    //$scope.endDate = DateTime.times;
     
     $scope.eventSource = [];
   $scope.OnSelect = function(start, end) {
@@ -46,7 +54,9 @@ function($scope) {
   $scope.eventClick = function(event, allDay, jsEvent, view) {
    alert("Event clicked");
   };
+    
   $scope.uiConfig = {
+      
    defaultView: 'agendaWeek',
    disableDragging: true,
    allDaySlot: false,
@@ -54,16 +64,16 @@ function($scope) {
    unselectAuto: false,
    selectHelper: false,
    editable: false,
-   maxTime: "21:00:00",
+   maxTime: "24:00:00",
    minTime: "8:00:00",
    eventDurationEditable: false, // disabling will show resize
    columnFormat: {
     week: 'dd-MM-yyyy',
     day: 'D-MMM-YYYY'
    },
-   height: 1550,
-   maxTime: "6:00:00",
-   minTime: "9:00:00",
+   height: 2550,
+   maxTime: "24:00:00",
+   minTime: "8:00:00",
    eventDurationEditable: false, // disabling will show resize
    columnFormat: {
     week: 'dd',
@@ -75,7 +85,7 @@ function($scope) {
    header: {
     left: ' agendaWeek today month',
     center: 'title',
-    right: 'prev next '
+    right: 'prev next'
    },
    select: $scope.onSelect,
    eventClick: $scope.eventClick,
