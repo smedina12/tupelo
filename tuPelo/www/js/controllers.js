@@ -32,7 +32,48 @@ $scope.items = Todos.items;
    
 .controller('fullCalendarCtrl',  ['$scope',
 function($scope, DateTime) {
-    
+    $(document).ready(function() {
+	    var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+
+
+
+$('#calendar').fullCalendar({
+    dayClick: function(date, jsEvent, view) {
+
+        alert('Clicked on: ' + date.format());
+
+        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+        alert('Current view: ' + view.name);
+
+        // change the day's background color just for fun
+        $(this).css('background-color', 'red');
+
+    }
+});
+    // render the event on the calendar
+	// the last `true` argument determines if the event "sticks" 
+				$('#calendar').fullCalendar('renderEvent', false);
+
+   var calendar = $('#calendar').fullCalendar({
+    events: [
+        {
+            title: 'My Event',
+            start: '2016-11-13 12:00:00"',
+            end: "2016-11-13 12:30:00",
+            description: 'This is a cool event'
+        }
+        // more events here
+    ],
+    eventRender: function(event, element) {
+        element.qtip({
+            content: event.description
+        });
+    }
+});
    //$scope.uiConfig.fullCalendar( 'renderEvent', event  );
     //$('#calendar').fullCalendar('renderEvent', {
       // title: 'My Event 2',
@@ -47,13 +88,20 @@ function($scope, DateTime) {
     $scope.eventSource = [];
   $scope.OnSelect = function(start, end) {
       
-
-      
-   console.log("Event select fired");
+      var title = prompt('Event Title:');
+				if (title) {
+					calendar.fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end
+						},
+						true // make the event "stick"
+					);
+				}
+				calendar.fullCalendar('unselect');
   };
-  $scope.eventClick = function(event, allDay, jsEvent, view) {
-   alert("Event clicked");
-  };
+ 
     
   $scope.uiConfig = {
       
@@ -61,26 +109,34 @@ function($scope, DateTime) {
    disableDragging: true,
    allDaySlot: false,
    selectable: true,
-   unselectAuto: false,
-   selectHelper: false,
+   unselectAuto: true,
+   selectHelper: true,
    editable: false,
-   maxTime: "24:00:00",
+   maxTime: "23:59:00",
    minTime: "8:00:00",
    eventDurationEditable: false, // disabling will show resize
    columnFormat: {
     week: 'dd-MM-yyyy',
     day: 'D-MMM-YYYY'
    },
-   height: 2550,
+   height: 780,
    maxTime: "24:00:00",
    minTime: "8:00:00",
    eventDurationEditable: false, // disabling will show resize
    columnFormat: {
-    week: 'dd',
-    day: 'D'
-   },
-    titleFormat: 'MMM-YY',
-   axisFormat: 'H:mm',
+    month: 'ddd',    // Mon
+    week: 'ddd', // Mon 
+    day: 'dddd M/d',  // Monday 9/7
+    agendaDay: 'dddd d'
+    },
+
+    titleFormat: {
+        month: 'MMMM yyyy', // September 2009
+        week: "MMM ", // September 2009
+        day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
+    },
+
+   axisFormat: 'h:mm',
    weekends: true,
    header: {
     left: ' agendaWeek today month',
@@ -89,18 +145,59 @@ function($scope, DateTime) {
    },
    select: $scope.onSelect,
    eventClick: $scope.eventClick,
-   events: [{
-    "id": "8",
-    "title": "Adam Scott",
-    "start": $scope.startDate,
-    "end": $scope.endDate,
-    "allDay": false,
-    "color": "#734187"
-   }]
-  };
+   events: [
+				{
+					title: 'All Day Event',
+					start: new Date(y, m, 1)
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d-3, 16, 0),
+					allDay: false,
+					className: 'info'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d+4, 16, 0),
+					allDay: false,
+					className: 'info'
+				},
+				{
+					title: 'Meeting',
+					start: new Date(y, m, d, 10, 30),
+					allDay: false,
+					className: 'important'
+				},
+				{
+					title: 'Lunch',
+					start: new Date(y, m, d, 12, 0),
+					end: new Date(y, m, d, 14, 0),
+					allDay: false,
+					className: 'important'
+				},
+				{
+					title: 'Birthday Party',
+					start: new Date(y, m, d+1, 19, 0),
+					end: new Date(y, m, d+1, 22, 30),
+					allDay: false,
+				},
+				{
+					title: 'Click for Google',
+					start: new Date(y, m, 28),
+					end: new Date(y, m, 29),
+					url: 'http://google.com/',
+					className: 'success'
+				}
+			],
 
- }
-])
+  };
+  
+    });
+
+
+ }])
 
 
    
