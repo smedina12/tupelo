@@ -76,17 +76,26 @@ var newtime2 = {
 
 .service('DateTime', ['$firebaseArray',function($firebaseArray, $scope) {
   
-        var ref = firebase.database().ref().child('employees');
+   var ref = firebase.database().ref().child('cal');
     
-    var date = $firebaseArray(ref);
+    var times = $firebaseArray(ref);
     
-      var times = {
-    'start': "2016-11-12 12:00:00",
-    'end': "2016-11-12 12:30:00",
+    //var time1 =times.child('id1');
     
-};
-    return times;
+    var DateTime = {
+    'items': times,
+    addTime: function(datetime, title)
+    {
+        ref.child(title).set({
+            'datetime': datetime.toString(),
+            'id': title
+        });
+        
+    }
 
+        
+    }
+    return DateTime;
 
     
     

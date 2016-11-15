@@ -32,6 +32,11 @@ $scope.items = Todos.items;
    
 .controller('fullCalendarCtrl',  ['$scope',
 function($scope, DateTime) {
+
+      
+      //$scope.time = DateTime.times;
+      
+      
     $(document).ready(function() {
 	    var date = new Date();
 		var d = date.getDate();
@@ -58,7 +63,7 @@ $('#calendar').fullCalendar({
 	// the last `true` argument determines if the event "sticks" 
 				$('#calendar').fullCalendar('renderEvent', false);
 
-   var calendar = $('#calendar').fullCalendar({
+ $('#calendar').fullCalendar({
     events: [
         {
             title: 'My Event',
@@ -86,21 +91,7 @@ $('#calendar').fullCalendar({
     //$scope.endDate = DateTime.times;
     
     $scope.eventSource = [];
-  $scope.OnSelect = function(start, end) {
-      
-      var title = prompt('Event Title:');
-				if (title) {
-					calendar.fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end
-						},
-						true // make the event "stick"
-					);
-				}
-				calendar.fullCalendar('unselect');
-  };
+
  
     
   $scope.uiConfig = {
@@ -111,6 +102,22 @@ $('#calendar').fullCalendar({
    selectable: true,
    unselectAuto: true,
    selectHelper: true,
+   select: function(start, end, allDay) {
+				var title = prompt('Event Title:');
+				if (title) {
+					$('#calendar').fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay
+						},
+						true // make the event "stick"
+					);
+				}
+				$('#calendar').fullCalendar('unselect');
+			},
+
    editable: false,
    maxTime: "23:59:00",
    minTime: "8:00:00",
@@ -148,6 +155,10 @@ $('#calendar').fullCalendar({
    events: [
 				{
 					title: 'All Day Event',
+					start: new Date(y, m, 1)
+				},
+				{
+				    title: 'All Day Event',
 					start: new Date(y, m, 1)
 				},
 				{
@@ -248,7 +259,7 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('employeeAddCtrl','ngLocale',
+.controller('employeeAddCtrl',
 function ($scope, $stateParams, $firebaseObject, Todos) {
     
     $scope.data = {
@@ -276,18 +287,25 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
  
    
   
+.controller('test1Ctrl', function($scope, $stateParams, $firebaseObject, DateTime){
+//sets the lenguage    
+moment.locale('en'); 
 
-.controller('test1Ctrl', 
-function ($scope, ionicDatePicker) {
-      moment.locale('en'); 
-      
-      //$scope = data.dateDropDownInput
-      //var ref = firebase.database().ref().child('cal');
-      //var dates = $firebaseArray(ref);
 
+$scope.data = {
+        'dateDropDownInput': '',
+        'title': 'id2'
+        
+    };
     
-
-  
+    
+    $scope.one = $scope.data.dateDropDownInput;
+    $scope.one.toString();
+    $scope.addTime = function(){
+        DateTime.addTime($scope.data.dateDropDownInput, $scope.data.title);
+        console.log("hello", $scope.data.dateDropDownInput);
+        alert('Form submitted');
+    };
 })
 
 
@@ -594,5 +612,5 @@ function ($scope, $stateParams, SignIn, $state) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
-}])
+}]);
  
