@@ -80,10 +80,11 @@ var newtime2 = {
     
     var times = $firebaseArray(ref);
     
+    
     //var time1 =times.child('id1');
     
     var DateTime = {
-    'items': times,
+    'time': times,
     addTime: function(datetime, title)
     {
         ref.child(title).set({

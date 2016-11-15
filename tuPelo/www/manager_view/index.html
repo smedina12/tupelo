@@ -1,454 +1,334 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="calendarDemoApp" id="top">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Angular Bootstrap - Date Time Picker Demo</title>
-    <base href="..">
+    <title>AngularUI Calendar for AngularJS</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="/../bower_components/bootstrap-css/css/bootstrap.css" />
+    <link rel="stylesheet" href="/../bower_components/fullcalendar/dist/fullcalendar.css">
+    <link rel="stylesheet" href="calendarDemo.css" />
 
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
 
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="src/css/datetimepicker.css">
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
-    <script type="text/javascript" src="node_modules/moment/moment.js"></script>
-    <script type="text/javascript" src="node_modules/moment/locale/de.js"></script>
-    <script type="text/javascript" src="node_modules/moment/locale/zh-cn.js"></script>
-    <script type="text/javascript" src="demo/demo-app.js"></script>
-    <script type="text/javascript" src="demo/demo-controller.js"></script>
-    <script type="text/javascript" src="src/js/datetimepicker.js"></script>
-    <script type="text/javascript" src="src/js/datetimepicker.templates.js"></script>
-    <script type="text/javascript" src="node_modules/angular-date-time-input/src/dateTimeInput.js"></script>
-    <style>
-        .datetimepicker {
-            width: 400px;
-        }
-    </style>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="../bower_components/fullcalendar/dist/gcal.js"></script>
+    <script src="../src/calendar.js"></script>
+    <script src="calendarDemo.js"></script>
 </head>
-<body data-ng-app="demo">
-<div class="container" data-ng-controller="demoController">
-
-
-    <ul class="nav nav-pills">
-        <li data-ng-class="{active: getLocale() === 'en'}"><a data-ng-click="setLocale('en')">English</a></li>
-        <li data-ng-class="{active: getLocale() === 'de'}"><a data-ng-click="setLocale('de')">German</a></li>
-        <li data-ng-class="{active: getLocale() === 'zh-cn'}"><a data-ng-click="setLocale('zh-cn')">Chinese</a></li>
-    </ul>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Drop-down Datetime with input box</h3>
-            <h4>No formatting</h4>
-
-            <p>Notice that you cannot enter a date with the keyboard.</p>
-
-            <p><code>dropdownSelector: '#dropdown1'</code> to toggle the dropdown.</p>
-
-            <div class="well">
-                <p>Formatted Date: {{ data.dateDropDownInputNoFormatting | date:'medium' }}</p>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#"
-                       href="#">
-                        <div class="input-group">
-                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInputNoFormatting">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker data-ng-model="data.dateDropDownInputNoFormatting"
-                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"></datetimepicker>
-                    </ul>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="col-sm-6">
-            <h3>Drop-down Datetime with input box</h3>
-            <h4>Localized formatting using <a href="https://github.com/dalelotts/angular-date-time-input"><code>angular-date-time-input</code></a>
-                directive</h4>
-
-            <p>Notice that you CAN enter a date with the keyboard.</p>
-
-            <p><code>dropdownSelector: '#dropdown2'</code> to toggle the dropdown.</p>
-
-            <div class="well">
-                <p>Formatted Date: {{ data.dateDropDownInput | date:'medium' }}</p>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#"
-                       href="#">
-                        <div class="input-group">
-                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInput"
-                                   data-date-time-input="YYYY-MM-DD HH:mm a">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker data-ng-model="data.dateDropDownInput"
-                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"></datetimepicker>
-                    </ul>
-                </div>
+<body data-spy="scroll">
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="dropdown pull-left">
+                <a class="brand dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                    AngularUI
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <li><a href="https://github.com/angular-ui/"><strong>Related Projects:</strong></a></li>
+                    <li class="divider"></li>
+                    <li><a href="http://angular-ui.github.com/bootstrap/">Bootstrap</a></li>
+                    <li><a href="http://angular-ui.github.com/ng-grid/">Grid</a></li>
+                    <li><a href="https://github.com/angular-ui/AngularJs.tmbundle">AngularJS.tmbundle</a></li>
+                    <li><a href="http://angular-ui.github.io/ui-router/sample/">Router <span
+                            class="label label-success">New!</span></a></li>
+                    <li><a href="http://angular-ui.github.com/Tips-n-Tricks/">Tips-n-Tricks <span
+                            class="label">WIP</span></a></li>
+                </ul>
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Drop-down Datetime with input box</h3>
-
-            <p>Default configuration</p>
-
-            <p><code>data-on-set-time='inputOnTimeSet()'</code> to toggle the dropdown.</p>
-
-            <div class="well">
-                <p>Formatted Date: {{ data.inputOnTimeSet | date:'medium' }}</p>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" id="dropdown3" role="button" data-toggle="dropdown" data-target="#"
-                       href="#">
-                        <div class="input-group">
-                            <input type="text" class="form-control" data-ng-model="data.inputOnTimeSet">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker data-ng-model="data.inputOnTimeSet"
-                                        data-on-set-time="inputOnTimeSet(newDate)"></datetimepicker>
+</header>
+<div class="hero-unit">
+            <div class="container">
+                <h1>UI Calendar</h1>
+                <p>A complete AngularJS directive for the <a href="http://arshaw.com/fullcalendar/">Arshaw FullCalendar</a>.</p>
+                <p class="btn-group">
+                    <a href="https://github.com/angular-ui/ui-calendar" class='btn'><i class='icon-github'></i> Code on Github</a>
+                    <a href="https://github.com/angular-ui/ui-calendar/archive/master.zip" class='btn btn-primary'><i class="icon-download-alt icon-white"></i> Download <small>(0.8.1)</small></a>
+                </p>
+            </div>
+            <div class="bs-docs-social">
+                <div class="container">
+                    <ul class="bs-docs-social-buttons">
+                        <li>
+                            <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-calendar&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                        </li>
+                        <li>
+                            <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-calendar&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                        </li>
+                        <li>
+                            <div class="g-plusone" data-size="medium"></div>        
+                            <!-- Place this tag after the last +1 button tag. -->
+                            <script type="text/javascript">
+                                (function () {
+                                    var po = document.createElement('script');
+                                    po.type = 'text/javascript';
+                                    po.async = true;
+                                    po.src = 'https://apis.google.com/js/plusone.js';
+                                    var s = document.getElementsByTagName('script')[0];
+                                    s.parentNode.insertBefore(po, s);
+                                })();
+                            </script>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-6">
-            <h3>Drop-down Datetime form integration</h3>
-
-            <p><code>dropdownSelector: '#dropdown4'</code> to toggle the dropdown.</p>
-
-            <p>This example shows a date picker that has the required attribute.
-                Note that the user must type into the input to toggle dirty/pristine. </p>
-
+<div role="main">
+    <div class="container">
+        <section id="directives-calendar" ng-controller="CalendarCtrl">
+            <div class="page-header">
+                <h1>UI-Calendar</h1>
+            </div>
             <div class="well">
-                <form name="datePickerWithInputForm" novalidate>
-                    <p>Formatted Date: {{ data.dateDropDownWithInput | date:'yyyy-MM-dd h:mm a' }}</p>
+                <div class="row-fluid">
+                    <div class="span4">
+                        <h3>What?</h3>
 
-                    <p>
-                        <span class="label label-warning"
-                              data-ng-show="datePickerWithInputForm.formDateValue.$dirty">dirty</span>
-                        <span class="label label-info"
-                              data-ng-show="datePickerWithInputForm.formDateValue.$pristine">pristine</span>
-                        <span class="label label-success"
-                              data-ng-show="datePickerWithInputForm.formDateValue.$valid">valid</span>
-                        <span class="label label-danger"
-                              data-ng-show="datePickerWithInputForm.formDateValue.$invalid">invalid</span>
-                    </p>
+                        <p>Attach Angular objects to a calendar.</p>
+                        <p>Show the data binding between two different calendars using the same event sources.</p>
 
-                    <p>
-                        <button type="button" class="btn btn-default" data-ng-click="data.dateDropDownWithInput = null">
-                            Set to null
-                        </button>
-                    </p>
+                        <h3>Why?</h3>
 
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" id="dropdown4" role="button" data-toggle="dropdown" data-target="#"
-                           href="#">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="formDateValue" data-ng-required="true"
-                                       data-ng-model="data.dateDropDownWithInput">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <datetimepicker data-ng-model="data.dateDropDownWithInput"
-                                            data-datetimepicker-config="{ dropdownSelector: '#dropdown4' }"></datetimepicker>
+                        <p>Why Not?</p>
+                        
+                        <div class="btn-group calTools">
+                          <button class="btn" ng-click="changeLang()">
+                            {{changeTo}}
+                          </button>              
+                          <button class="btn" ng-click="addRemoveEventSource(eventSources,eventSource)">
+                            Toggle Source
+                          </button>
+                          <button type="button" class="btn btn-primary" ng-click="addEvent()">
+                            Add Event
+                          </button>
+                        </div>
+
+                        <ul class="unstyled">
+                            <li ng-repeat="e in events">
+                                <div class="alert alert-info">
+                                    <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
+                                    <b> <input ng-model="e.title"></b> 
+                                    {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+                                </div>
+                            </li>
                         </ul>
+
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-
-        <div class="col-sm-6">
-            <h3>Drop-down using text link</h3>
-
-            <p><code>dropdownSelector: '#dropdown5'</code> to toggle the dropdown.</p>
-
-            <div class="well">
-                <p>Formatted Date: {{ data.linkCalendar | date:'medium' }}</p>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" id="dropdown5" role="button" data-toggle="dropdown" data-target="#"
-                       href="#">
-                        Click here to show calendar
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker data-ng-model="data.linkCalendar"
-                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown5' }"></datetimepicker>
-                    </ul>
+                    <div class="span8">
+                        <tabset>
+                            <tab select="renderCalendar('myCalendar1');">
+                              <tab-heading>
+                               <i class="glyphicon glyphicon-bell"></i> Calendar One
+                              </tab-heading>
+                              <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+                                <h4>{{alertMessage}}</h4>
+                              </div>
+                              <div class="btn-toolbar">
+                                <p class="pull-right lead">Calendar One View Options</p>
+                                <div class="btn-group">
+                                    <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
+                                    <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
+                                    <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+                                </div>
+                              </div>
+                            <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
+                           </tab>
+                           <tab select="renderCalendar('myCalendar2');">
+                            <tab-heading>
+                              <i class="glyphicon glyphicon-bell"></i> Calendar Two
+                            </tab-heading>
+                              <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+                                <h4>{{alertMessage}}</h4>
+                              </div>
+                              <div class="btn-toolbar">
+                                <p class="pull-right lead">Calendar Two View Options</p>
+                                <div class="btn-group">
+                                    <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar2')">AgendaDay</button>
+                                    <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar2')">AgendaWeek</button>
+                                    <button class="btn btn-success" ng-click="changeView('month', 'myCalendar2')">Month</button>
+                                </div>
+                              </div>
+                            <div class="calendar" ng-model="eventSources" calendar="myCalendar2" ui-calendar="uiConfig.calendar"></div>
+                           </tab>
+                           <tab select="renderCalendar('myCalendar3');">
+                            <tab-heading>
+                              <i class="glyphicon glyphicon-bell"></i> Calendar Three
+                            </tab-heading>
+                              <div class="alert-success calAlert">
+                                <h4>This calendar uses the extended form</h4>
+                              </div>
+                              <div class="btn-toolbar">
+                                <p class="pull-right lead">Calendar Three View Options</p>
+                                <div class="btn-group">
+                                    <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar3')">AgendaDay</button>
+                                    <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar3')">AgendaWeek</button>
+                                    <button class="btn btn-success" ng-click="changeView('month', 'myCalendar3')">Month</button>
+                                </div>
+                              </div>
+                            <div class="calendar" ng-model="eventSources2" calendar="myCalendar3" ui-calendar="uiConfig.calendar"></div>
+                           </tab>
+                        </tabset>
+                    </div>
                 </div>
             </div>
-        </div>
+            <h3>How?</h3>
+        <pre class="prettyprint linenums">
+&lt;div ui-calendar="{{uiConfig.calendar}}" calendar="myCalendar" class="span8 calendar" ng-model="eventSources"&gt;&lt;/div&gt; 
 
-        <div class="col-sm-6">
-            <h3>Show / hide with check box</h3>
+/**
+ * calendarDemoApp - 0.9.0
+ */
+angular.module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap']);
 
-            <p><code>startView: 'day'</code> and <code>minuteStep: 15</code></p>
+function CalendarCtrl($scope,$compile,uiCalendarConfig) {
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    
+    $scope.changeTo = 'Hungarian';
+    /* event source that pulls from google.com */
+    $scope.eventSource = {
+            url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
+            className: 'gcal-event',           // an option!
+            currentTimezone: 'America/Chicago' // an option!
+    };
+    /* event source that contains custom events on the scope */
+    $scope.events = [
+      {title: 'All Day Event',start: new Date(y, m, 1)},
+      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+    ];
+    /* event source that calls a function on every view switch */
+    $scope.eventsF = function (start, end, timezone, callback) {
+      var s = new Date(start).getTime() / 1000;
+      var e = new Date(end).getTime() / 1000;
+      var m = new Date(start).getMonth();
+      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+      callback(events);
+    };
 
-            <p><code>data-on-set-time='checkboxOnTimeSet()'</code> to toggle visibility.</p>
+    $scope.calEventsExt = {
+       color: '#f00',
+       textColor: 'yellow',
+       events: [ 
+          {type:'party',title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+          {type:'party',title: 'Lunch 2',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+          {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+        ]
+    };
+    /* alert on eventClick */
+    $scope.alertOnEventClick = function( date, jsEvent, view){
+        $scope.alertMessage = (date.title + ' was clicked ');
+    };
+    /* alert on Drop */
+     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+       $scope.alertMessage = ('Event Dropped to make dayDelta ' + delta);
+    };
+    /* alert on Resize */
+    $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
+       $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
+    };
+    /* add and removes an event source of choice */
+    $scope.addRemoveEventSource = function(sources,source) {
+      var canAdd = 0;
+      angular.forEach(sources,function(value, key){
+        if(sources[key] === source){
+          sources.splice(key,1);
+          canAdd = 1;
+        }
+      });
+      if(canAdd === 0){
+        sources.push(source);
+      }
+    };
+    /* add custom event*/
+    $scope.addEvent = function() {
+      $scope.events.push({
+        title: 'Open Sesame',
+        start: new Date(y, m, 28),
+        end: new Date(y, m, 29),
+        className: ['openSesame']
+      });
+    };
+    /* remove event */
+    $scope.remove = function(index) {
+      $scope.events.splice(index,1);
+    };
+    /* Change View */
+    $scope.changeView = function(view,calendar) {
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+    };
+    /* Change View */
+    $scope.renderCalender = function(calendar) {
+      if(uiCalendarConfig.calendars[calendar]){
+        uiCalendarConfig.calendars[calendar].fullCalendar('render');
+      }
+    };
+     /* Render Tooltip */
+    $scope.eventRender = function( event, element, view ) { 
+        element.attr({'tooltip': event.title,
+                     'tooltip-append-to-body': true});
+        $compile(element)($scope);
+    };
+    /* config object */
+    $scope.uiConfig = {
+      calendar:{
+        height: 450,
+        editable: true,
+        header:{
+          left: 'title',
+          center: '',
+          right: 'today prev,next'
+        },
+        eventClick: $scope.alertOnEventClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize,
+        eventRender: $scope.eventRender
+      }
+    };
 
-            <div class="well">
-                <p>Formatted Date: {{ data.checkboxCalendar | date:'medium' }}</p>
-                Click me to show/hide via ng-show: <input type="checkbox" data-ng-model="data.checked"><br/>
-                <datetimepicker data-ng-model="data.checkboxCalendar" data-ng-show="data.checked"
-                                data-datetimepicker-config="{ startView: 'day', minuteStep: 15 }"
-                                data-on-set-time="checkboxOnTimeSet(newDate)"></datetimepicker>
-            </div>
-        </div>
+    $scope.changeLang = function() {
+      if($scope.changeTo === 'Hungarian'){
+        $scope.uiConfig.calendar.dayNames = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
+        $scope.changeTo= 'English';
+      } else {
+        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        $scope.changeTo = 'Hungarian';
+      }
+    };
+    /* event sources array*/
+    $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
+    $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+}
+/* EOF */
 
-
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Embedded calendar</h3>
-
-            <p>Default configuration</p>
-
-            <div class="well">
-                <p>Formatted Date: {{ data.embeddedYear | date:'yyyy-MM-dd h:mm a' }}</p>
-
-                <datetimepicker data-ng-model="data.embeddedYear"></datetimepicker>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <h3>Embedded calendar form integration</h3>
-
-            <p>This example shows a date picker that has the required attribute.
-                Note that without an input, only validity is tracked by ngModel. </p>
-
-            <div class="well">
-                <form name="datePickerForm" novalidate>
-                    <p>Formatted Date: {{ data.formDate | date:'yyyy-MM-dd h:mm a' }}</p>
-
-                    <p>
-                        <span class="label label-warning"
-                              data-ng-show="datePickerForm.formDateValue.$dirty">dirty</span>
-                        <span class="label label-info"
-                              data-ng-show="datePickerForm.formDateValue.$pristine">pristine</span>
-                        <span class="label label-success"
-                              data-ng-show="datePickerForm.formDateValue.$valid">valid</span>
-                        <span class="label label-danger"
-                              data-ng-show="datePickerForm.formDateValue.$invalid">invalid</span>
-                    </p>
-
-                    <button type="button" class="btn btn-default" data-ng-click="data.formDate = null">Set to null
-                    </button>
-                    <datetimepicker data-ng-model="data.formDate" data-ng-required="true"
-                                    name="formDateValue"></datetimepicker>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Embedded calendar with property configuration</h3>
-
-            <p><code>data-datetimepicker-config="config.datetimePicker"</code></p>
-
-            <p>which returns <code>{ startView: 'year' }</code></p>
-
-            <div class="well">
-                <p>Formatted Date: {{ data.embeddedPropertyConfig | date:'yyyy-MM-dd h:mm a' }}</p>
-
-                <datetimepicker data-ng-model="data.embeddedPropertyConfig"
-                                data-datetimepicker-config="config.datetimePicker"></datetimepicker>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <h3>Embedded calendar with function configuration</h3>
-
-            <p><code>data-datetimepicker-config="configFunction()"</code></p>
-
-            <p>which returns <code>{ startView: 'month' }</code></p>
-
-            <div class="well">
-                <p>Formatted Date: {{ data.embeddedFunctionConfig | date:'yyyy-MM-dd h:mm a' }}</p>
-
-                <datetimepicker data-ng-model="data.embeddedFunctionConfig"
-                                data-datetimepicker-config="configFunction()"></datetimepicker>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>ng-repeat with drop-down using text link</h3>
-
-            <p><code>data-on-set-time="guardianOnSetTime($index, guardian, newDate, oldDate)"</code></p>
-
-            <div class="well" data-ng-repeat="guardian in data.guardians">
-                <p>{{ guardian.name }}</p>
-
-                <p>DOB: {{ guardian.dob | date:'yyyy-MM-dd' }} </p>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" id="guardian{{ $index }}" role="button" data-toggle="dropdown"
-                       data-target="#"
-                       href="#">
-                        Click here to show calendar
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker data-ng-model="guardian.dob"
-                                        data-on-set-time="guardianOnSetTime($index, guardian, newDate, oldDate)"></datetimepicker>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <h3>Drop-down Datetime with restricted dates</h3>
-            <h4>One date - somewhere near the middle of the display - is disabled on each view</h4>
-
-            <p><code>dropdownSelector: '#dropdown6'</code> to toggle the dropdown.</p>
-
-            <div class="well">
-                <p>Formatted Date: {{ data.dateDropDownInputNoFormatting | date:'medium' }}</p>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" id="dropdown6" role="button" data-toggle="dropdown" data-target="#"
-                       href="#">
-                        <div class="input-group">
-                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInputNoFormatting">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker data-ng-model="data.dateDropDownInputNoFormatting"
-                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown6' }"
-                                        data-before-render="beforeRender($dates)"></datetimepicker>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-
-        <div class="col-sm-6">
-            <h3>Embedded calendar with configureOn</h3>
-            <h4>Every time you click the button, the startView is changed</h4>
-
-            <p><code>configureOn: 'config-changed'</code> to cause the directive to re-read its configuration.</p>
-
-            <p>
-                <button class="btn btn-default" data-ng-click="changeConfig()">Click me to change startView</button>
-            </p>
-
-            <div class="well">
-                <p>Start View: {{ config.configureOnConfig.startView }}</p>
-
-                <datetimepicker data-ng-model="data.configureOnDate"
-                                data-datetimepicker-config="config.configureOnConfig"></datetimepicker>
-
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <h3>Embedded calendar with renderOn</h3>
-            <h4>Every time you click the button, the selectable attribute is toggled.</h4>
-
-            <p><code>renderOn: 'valid-dates-changed'</code> to cause the directive to re-render.</p>
-
-            <p>
-                <button class="btn btn-default" data-ng-click="renderOnClick()">Click me to re-render</button>
-            </p>
-
-            <div class="well">
-
-                <datetimepicker data-ng-model="data.renderOnDate"
-                                data-before-render='renderOnBeforeRender($dates)'
-                                data-datetimepicker-config="config.renderOnConfig"></datetimepicker>
-
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Date range picker</h3>
-            <h4>Every time you select a start date, dates before the start date are disabled in the end date.</h4>
-
-            <p>This is a little more complex than the other examples.</p>
-            <p><strong>Start Date:</strong> <code>renderOn: 'end-date-changed'</code> to cause the directive to re-render when the end date changes,
-            and <code>data-on-set-time="startDateOnSetTime()"</code> to broadcast when the start date changes,
-            and finally <code>data-before-render="beforeRenderStartDate($dates)"</code>
-                to disable the dates after the selected end date.</p>
-
-            <p><strong>End Date:</strong> <code>renderOn: 'start-date-changed'</code> to cause the directive to re-render when the start date changes,
-                and <code>data-on-set-time="endDateOnSetTime()"</code> to broadcast when the end date changes,
-                and finally <code>data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"</code>
-                to disable the dates before the selected start date.</p>
-
-            <p>NB: It is possible that data coming from the server (or via a defect in the controller) that the start date is after the end date.
-                To allow the user to get themselves out of this situation, your implementation might not disable any dates if the start date is greater than the end date.
-            </p>
-
-            <div class="well">
-                <div class="dropdown form-group">
-                    <label>Start Date</label>
-                    <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#"
-                       href="#">
-                        <div class="input-group date">
-                            <input type="text" class="form-control" data-ng-model="dateRangeStart">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker data-ng-model="dateRangeStart"
-                                        data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', renderOn: 'end-date-changed' }"
-                                        data-on-set-time="startDateOnSetTime()"
-                                        data-before-render="startDateBeforeRender($dates)"></datetimepicker>
-                    </ul>
-                </div>
-
-                <div class="dropdown form-group">
-                    <label>End Date</label>
-                    <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#"
-                       href="#">
-                        <div class="input-group date">
-                            <input type="text" class="form-control" data-ng-model="dateRangeEnd">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <datetimepicker data-ng-model="dateRangeEnd"
-                                        data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' }"
-                                        data-on-set-time="endDateOnSetTime()"
-                                        data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
-                    </ul>
-                </div>
-            </div>
-        </div>
+            </pre>
+        </section>
     </div>
 </div>
-
-</body>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-17352735-3']);
+            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </body>
 </html>
