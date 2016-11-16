@@ -30,167 +30,150 @@ $scope.items = Todos.items;
 
   })
    
-.controller('fullCalendarCtrl',  ['$scope','$firebaseArray',
-function($scope,$firebaseArray, DateTime) {
+ 
+.controller('fullCalendarCtrl',  ['$scope', '$firebaseArray',
+function fullCalendarCtrl($scope, $compile, uiCalendarConfig, $firebaseArray) {
 var ref = firebase.database().ref().child('cal');
+ //$scope.times = $firebaseArray(ref);
+// var justDate;
 
-     var times = $firebaseArray(ref);
+  ref.once("value").then(function(snapshot) {
+    var cDate = snapshot.child("id1").val(); // { first: "Ada", last: "Lovelace"}
+    var justDate = snapshot.child("id1/datetime").val(); // "Ada"
+    var title = snapshot.child("id1").child("id").val(); // "Lovelace"
     
-
-      console.log("hello", times[1]);
-      
-      //$scope.time = DateTime.times;
-      
-     // console.log(DateTime.times);
-      
-      
-    $(document).ready(function() {
-	    var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-
+    var newdate = moment(justDate);
     
+    /* add custom event*/
     
-    $scope.eventSource = [];
-    
-     $scope.eventSource.push();
-
- $('#external-events div.external-event').each(function() {
-
-			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-			// it doesn't need to have a start or end
-			var eventObject = {
-				title: $.trim($(this).text()) // use the element's text as the event title
-			};
-
-			// store the Event Object in the DOM element so we can get to it later
-			$(this).data('eventObject', eventObject);
-
-
-		});
-
-    
-  $scope.uiConfig = {
-			editable: true,
-			firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
-			selectable: true,
-			defaultView: 'agendaWeek',
-
-			axisFormat: 'h:mm',
-			columnFormat: {
-                month: 'ddd',    // Mon
-                week: 'ddd d', // Mon 7
-                day: 'dddd M/d',  // Monday 9/7
-                agendaDay: 'dddd d'
-            },
-            titleFormat: {
-                month: 'MMMM yyyy', // September 2009
-                week: "MMMM yyyy", // September 2009
-                day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
-            },
-			allDaySlot: false,
-			selectHelper: false,
-
-   select: function(start, end, allDay) {
-				var title = prompt('write something:');
-				if (title) {
-					$('#calendar').fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end,
-							allDay: allDay
-						},
-						true // make the event "stick"
-					);
-				}
-				$('#calendar').fullCalendar('unselect');
-			},
-			droppable: true, // this allows things to be dropped onto the calendar !!!
-			drop: function(date, allDay) { // this function is called when something is dropped
-
-				// retrieve the dropped element's stored Event Object
-				var originalEventObject = $(this).data('eventObject');
-
-				// we need to copy it, so that multiple events don't have a reference to the same object
-				var copiedEventObject = $.extend({}, originalEventObject);
-
-				// assign it the date that was reported
-				copiedEventObject.start = date;
-				copiedEventObject.allDay = allDay;
-
-				// render the event on the calendar
-				// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-				$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-
-				// is the "remove after drop" checkbox checked?
-				if ($('#drop-remove').is(':checked')) {
-					// if so, remove the element from the "Draggable Events" list
-					$(this).remove();
-				}
-
-			},
-   events: [
-				{
-					title: 'All Day Event',
-					start: new Date(y, m, 1)
-				},
-				{
-				    title: 'All Day Event',
-					start: new Date(y, m, 1)
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: new Date(y, m, d-3, 16, 0),
-					allDay: false,
-					className: 'info'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: new Date(y, m, d+4, 16, 0),
-					allDay: false,
-					className: 'info'
-				},
-				{
-					title: 'Meeting',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false,
-					className: 'important'
-				},
-				{
-					title: 'Lunch',
-					start: new Date(y, m, d, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false,
-					className: 'important'
-				},
-				{
-					title: 'Birthday Party',
-					start: new Date(y, m, d+1, 19, 0),
-					end: new Date(y, m, d+1, 22, 30),
-					allDay: false,
-				},
-				{
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/',
-					className: 'success'
-				}
-			],
-			
-
-  };
-
+      $scope.events.push({
+        title: title,
+        start: newdate,
+        className: ['openSesame']
+      });
+ 
+  });
+  //console.log('here', justDate);
   
-    });
+ 
+      var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    
+   /* event source that pulls from google.com */
+    $scope.eventSource = {
+           // url: "https://calendar.google.com/calendar/embed?src=p25394n6ig7qi9jur3f3uhsig4%40group.calendar.google.com",
+            className: 'gcal-event',           // an option!
+            currentTimezone: 'America/New_York' // an option!
+    };
+    
+    /* event source that contains custom events on the scope */
+    $scope.events = [
+      {title: 'All Day Event',start: new Date(y, m, 1)},
+      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+      {id: 999, title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+      {id: 999, title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'https://google.com/'}
+    ];
+    
+    /* event source that calls a function on every view switch */
+    $scope.eventsF = function (start, end, timezone, callback) {
+      var s = new Date(start).getTime() / 1000;
+      var e = new Date(end).getTime() / 1000;
+      var m = new Date(start).getMonth();
+      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+      callback(events);
+    };
+    
+   $scope.calEventsExt = {
+       color: '#f00',
+       textColor: 'yellow',
+       events: [ 
+          {type:'party',title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+          {type:'party',title: 'Lunch 2',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+          {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'https://google.com/'}
+        ]
+    };
+    /* alert on eventClick */
+    $scope.alertOnEventClick = function( date, jsEvent, view){
+        $scope.alertMessage = (date.title + ' was clicked ');
+    };
+    /* alert on Drop */
+     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+       $scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
+    };
+    /* alert on Resize */
+    $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
+       $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
+    };
+    /* add and removes an event source of choice */
+    $scope.addRemoveEventSource = function(sources,source) {
+      var canAdd = 0;
+      angular.forEach(sources,function(value, key){
+        if(sources[key] === source){
+          sources.splice(key,1);
+          canAdd = 1;
+        }
+      });
+      if(canAdd === 0){
+        sources.push(source);
+      }
+    };
+    /* remove event */
+    $scope.remove = function(index) {
+      $scope.events.splice(index,1);
+    };
+    /* Change View */
+    $scope.changeView = function(view,calendar) {
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+    };
+    /* Change View */
+    $scope.renderCalender = function(calendar) {
+      if(uiCalendarConfig.calendars[calendar]){
+        uiCalendarConfig.calendars[calendar].fullCalendar('render');
+      }
+    };
+     /* Render Tooltip */
+    $scope.eventRender = function( event, element, view ) { 
+        element.attr({'tooltip': event.title,
+                     'tooltip-append-to-body': true});
+        //$compile(element)($scope);
+    };
+    /* config object */
+    $scope.uiConfig = {
+      calendar:{
+        height: 950,
+        editable: true,
+        header:{
+          left: 'title',
+          center: 'agendaWeek, month',
+          right: 'today prev,next'
+        },
+        eventClick: $scope.alertOnEventClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize,
+        eventRender: $scope.eventRender
+      }
+    };
 
+    $scope.changeLang = function() {
+      if($scope.changeTo === 'Hungarian'){
+        $scope.uiConfig.calendar.dayNames = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
+        $scope.changeTo= 'English';
+      } else {
+        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        $scope.changeTo = 'Hungarian';
+      }
+    };
+    /* event sources array*/
+    $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
+    $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+}])
 
-
- }])
 
 
    
@@ -276,7 +259,7 @@ moment.locale('en');
 
 $scope.data = {
         'dateDropDownInput': '',
-        'title': 'id2'
+        'title': 'id1'
         
     };
     

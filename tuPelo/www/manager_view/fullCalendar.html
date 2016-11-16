@@ -4,11 +4,10 @@
 
     <ion-content scroll="true" has-bouncing="false" class="showScroll">
             <div class="row">
-            	<div class="col col-100" >
-              <div scroll="false"  ui-calendar="uiConfig" class="calendar target" ng-model="eventSource" id="dayCalendar" calendar="dayCalendar"></div>
-              </div>
+            	
+              <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div> 
              </div>
-     
+     <button class="button button-stable  button-block"  ng-click="addEvent()">Submit Time</button>
      </ion-content>
 </ion-view>
 </ion-content>
