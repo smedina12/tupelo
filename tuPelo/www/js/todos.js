@@ -88,9 +88,11 @@ var newtime2 = {
     addTime: function(datetime, title)
     {
         ref.child(title).set({
-            'datetime': datetime.toString(),
-            'id': title
+            'start': datetime.toString(),
+            'title': title
         });
+        
+        
         
     }
 
@@ -101,6 +103,46 @@ var newtime2 = {
     
     
     
-}]);
+}])
+/*
+.service('Calendar', ['$firebaseArray',function($firebaseArray, $scope) {
+        
+        var ref = firebase.database().ref().child('cal');
+ //$scope.times = $firebaseArray(ref);
+// var justDate;
+var calendar = {
+    refresTime: function(){
 
+  ref.once("value").then(function(snapshot) {
+    var cDate = snapshot.child("id1").val(); // { first: "Ada", last: "Lovelace"}
+    var justDate = snapshot.child("id1/start").val(); // "date"
+    var title = snapshot.child("id1/title").val(); // "title"
+      
+      
+    ref.once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var child = childSnapshot.val();
+    console.log('here', child.id);
+    
 
+        $scope.events.push({
+        title: child.title,
+        start: child.start,
+        stick: true,
+      });
+
+    
+  });
+});
+    
+ 
+
+  });
+    }
+}DateTime
+   
+   return calendar; 
+    
+}])
+
+*/

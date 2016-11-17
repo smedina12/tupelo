@@ -33,25 +33,38 @@ $scope.items = Todos.items;
  
 .controller('fullCalendarCtrl',  ['$scope', '$firebaseArray',
 function fullCalendarCtrl($scope, $compile, uiCalendarConfig, $firebaseArray) {
+    
+    
+    
 var ref = firebase.database().ref().child('cal');
  //$scope.times = $firebaseArray(ref);
 // var justDate;
 
   ref.once("value").then(function(snapshot) {
     var cDate = snapshot.child("id1").val(); // { first: "Ada", last: "Lovelace"}
-    var justDate = snapshot.child("id1/datetime").val(); // "Ada"
-    var title = snapshot.child("id1").child("id").val(); // "Lovelace"
+    var justDate = snapshot.child("id1/start").val(); // "date"
+    var title = snapshot.child("id1/title").val(); // "title"
+      
+      
+    ref.once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var child = childSnapshot.val();
+    console.log('here', child.id);
     
-    var newdate = moment(justDate);
-    
-    /* add custom event*/
-    
-      $scope.events.push({
-        title: title,
-        start: newdate,
-        className: ['openSesame']
+        $scope.events.push({
+        title: child.title,
+        start: child.start,
+        stick: true,
       });
+
+    
+  });
+});
+    
  
+    
+
+
   });
   //console.log('here', justDate);
   
@@ -144,8 +157,9 @@ var ref = firebase.database().ref().child('cal');
     /* config object */
     $scope.uiConfig = {
       calendar:{
-        height: 950,
+        height: 750,
         editable: true,
+        allDaySlot: false,
         header:{
           left: 'title',
           center: 'agendaWeek, month',
@@ -259,7 +273,7 @@ moment.locale('en');
 
 $scope.data = {
         'dateDropDownInput': '',
-        'title': 'id1'
+        'title': 'id4'
         
     };
     
@@ -270,6 +284,7 @@ $scope.data = {
         DateTime.addTime($scope.data.dateDropDownInput, $scope.data.title);
         alert('Form submitted');
     };
+    
 })
 
 
