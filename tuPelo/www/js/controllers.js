@@ -154,6 +154,7 @@ var ref = firebase.database().ref().child('cal');
                      'tooltip-append-to-body': true});
         //$compile(element)($scope);
     };
+
     /* config object */
     $scope.uiConfig = {
       calendar:{
@@ -161,10 +162,11 @@ var ref = firebase.database().ref().child('cal');
         editable: true,
         allDaySlot: false,
         header:{
-          left: 'title',
-          center: 'agendaWeek, month',
+          left: 'agendaWeek, month, agendaDay',
+          center: 'title',
           right: 'today prev,next'
         },
+
         eventClick: $scope.alertOnEventClick,
         eventDrop: $scope.alertOnDrop,
         eventResize: $scope.alertOnResize,
@@ -267,10 +269,10 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
    
   
 .controller('test1Ctrl', function($scope, $stateParams, $firebaseObject, DateTime){
-//sets the lenguage    
+  
+  
+//sets the lenguage  
 moment.locale('en'); 
-
-
 $scope.data = {
         'dateDropDownInput': '',
         'title': 'id4'
@@ -285,7 +287,14 @@ $scope.data = {
         alert('Form submitted');
     };
     
+    
+    
+    
+    
 })
+
+
+
 
 
 	
@@ -387,7 +396,162 @@ $scope.item = Todos.items[Todos.items.$indexFor($stateParams.item)];
 .controller('employeeAppointmentsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function fullCalendarCtrl($scope, $compile, uiCalendarConfig, $firebaseArray) {
+    
+    
+    
+var ref = firebase.database().ref().child('cal');
+ //$scope.times = $firebaseArray(ref);
+// var justDate;
+
+  ref.once("value").then(function(snapshot) {
+    var cDate = snapshot.child("id1").val(); // { first: "Ada", last: "Lovelace"}
+    var justDate = snapshot.child("id1/start").val(); // "date"
+    var title = snapshot.child("id1/title").val(); // "title"
+      
+      
+    ref.once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var child = childSnapshot.val();
+
+    
+        $scope.events.push({
+        title: child.title,
+        start: child.start,
+        stick: true,
+      });
+
+    
+  });
+});
+    
+ 
+    
+
+
+  });
+  //console.log('here', justDate);
+  
+ 
+      var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    
+   /* event source that pulls from google.com */
+    $scope.eventSource = {
+           // url: "https://calendar.google.com/calendar/embed?src=p25394n6ig7qi9jur3f3uhsig4%40group.calendar.google.com",
+            className: 'gcal-event',           // an option!
+            currentTimezone: 'America/New_York' // an option!
+    };
+    
+    /* event source that contains custom events on the scope */
+    $scope.events = [
+      {title: 'All Day Event',start: new Date(y, m, 1)},
+      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+      {id: 999, title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+      {id: 999, title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'https://google.com/'}
+    ];
+    
+    /* event source that calls a function on every view switch */
+    $scope.eventsF = function (start, end, timezone, callback) {
+      var s = new Date(start).getTime() / 1000;
+      var e = new Date(end).getTime() / 1000;
+      var m = new Date(start).getMonth();
+      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+      callback(events);
+    };
+    
+   $scope.calEventsExt = {
+       color: '#f00',
+       textColor: 'yellow',
+       events: [ 
+          {type:'party',title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+          {type:'party',title: 'Lunch 2',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+          {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'https://google.com/'}
+        ]
+    };
+    /* alert on eventClick */
+    $scope.alertOnEventClick = function( date, jsEvent, view){
+        $scope.alertMessage = (date.title + ' was clicked ');
+    };
+    /* alert on Drop */
+     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+       $scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
+    };
+    /* alert on Resize */
+    $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
+       $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
+    };
+    /* add and removes an event source of choice */
+    $scope.addRemoveEventSource = function(sources,source) {
+      var canAdd = 0;
+      angular.forEach(sources,function(value, key){
+        if(sources[key] === source){
+          sources.splice(key,1);
+          canAdd = 1;
+        }
+      });
+      if(canAdd === 0){
+        sources.push(source);
+      }
+    };
+    /* remove event */
+    $scope.remove = function(index) {
+      $scope.events.splice(index,1);
+    };
+    /* Change View */
+    $scope.changeView = function(view,calendar) {
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+    };
+    /* Change View */
+    $scope.renderCalender = function(calendar) {
+      if(uiCalendarConfig.calendars[calendar]){
+        uiCalendarConfig.calendars[calendar].fullCalendar('render');
+      }
+    };
+     /* Render Tooltip */
+    $scope.eventRender = function( event, element, view ) { 
+        element.attr({'tooltip': event.title,
+                     'tooltip-append-to-body': true});
+        //$compile(element)($scope);
+    };
+
+    /* config object */
+    $scope.uiConfig = {
+      calendar:{
+        height: 750,
+        editable: true,
+        allDaySlot: false,
+        header:{
+          left: 'agendaWeek, month, agendaDay',
+          center: 'title',
+          right: 'today prev,next'
+        },
+
+        eventClick: $scope.alertOnEventClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize,
+        eventRender: $scope.eventRender
+      }
+    };
+
+    $scope.changeLang = function() {
+      if($scope.changeTo === 'Hungarian'){
+        $scope.uiConfig.calendar.dayNames = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
+        $scope.changeTo= 'English';
+      } else {
+        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        $scope.changeTo = 'Hungarian';
+      }
+    };
+    /* event sources array*/
+    $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
+    $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
 
 
 }])

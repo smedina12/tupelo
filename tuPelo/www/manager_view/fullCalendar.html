@@ -1,17 +1,28 @@
-    <h2>Please choose a time</h2>
+<style>
+#calendar {
+    width:95%;
+    margin: 0 auto;
+    font-size: 10px;
+    padding-left: 5%;
+}
+.fc-toolbar h2 {
+    font-size: 15px;
+    white-space: normal !important;
+}
+
+</style>
     
 <ion-view name="menuContent" title="Full Calendar" id="page3" style="">
 
     <ion-content scroll="true" has-bouncing="false" class="showScroll">
             <div class="row">
             	
-              <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div> 
+              <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" id='calendar'></div> 
              </div>
      <button class="button button-stable  button-block"  ng-click="addEvent()">Submit Time</button>
      </ion-content>
-</ion-view>
-</ion-content>
-
     <ion-footer-bar>
 
     </ion-footer-bar>
+</ion-view>
+

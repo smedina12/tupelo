@@ -45,7 +45,7 @@ var newtime2 = {
 
 .service('Todos', ['$firebaseArray',function($firebaseArray, $scope){
     
-    var ref = firebase.database().ref().child('employees');
+    var ref = firebase.database().ref().child('Users');
     
     var items = $firebaseArray(ref);
     
@@ -58,7 +58,7 @@ var newtime2 = {
             'email': email,
             'phone': phone,
             'password':password,
-            'finished': false
+            'employee': true
         });
         
     },
@@ -139,7 +139,7 @@ var calendar = {
 
   });
     }
-}DateTime
+}
    
    return calendar; 
     

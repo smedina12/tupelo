@@ -1,23 +1,32 @@
+        <style>
+#calendar {
+    width:95%;
+    margin: 0 auto;
+    font-size: 10px;
+    padding-left: 5%;
+}
+.fc-toolbar h2 {
+    font-size: 15px;
+    white-space: normal !important;
+}
+
+</style>
+
+
 <ion-view title="Employee Appointments" id="page1">
-    <ion-content padding="true" class="has-header">
+    <ion-content padding="true" class="has-header"  has-bouncing="false">
         <h2 id="employeeAppointments-heading1" style="color:#000000;text-align:center;">Today's Date</h2>
-        <ion-list id="employeeAppointments-list1">
-            <ion-item class="item-avatar" id="employeeAppointments-list-item5">
-                <h2>Customer 1</h2>
-            </ion-item>
-            <ion-item class="item-divider" id="employeeAppointments-list-item-divider1">10:00 AM</ion-item>
-            <ion-item class="item-avatar" id="employeeAppointments-list-item6">
-                <h2>Customer 2</h2>
-            </ion-item>
-            <ion-item class="item-divider" id="employeeAppointments-list-item-divider2">11:30 AM</ion-item>
-            <ion-item class="item-avatar" id="employeeAppointments-list-item7">
-                <h2>Customer 3</h2>
-            </ion-item>
-            <ion-item class="item-divider" id="employeeAppointments-list-item-divider3">1:00 PM</ion-item>
-            <ion-item class="item-avatar" id="employeeAppointments-list-item8">
-                <h2>Customer 4</h2>
-            </ion-item>
-            <ion-item class="item-divider" id="employeeAppointments-list-item-divider4">4:00 PM</ion-item>
-        </ion-list>
+        
+    
+
+
+
+            <div class="row">
+            	
+              <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" id='calendar'></div> 
+             </div>
+     <button class="button button-stable  button-block"  ng-click="addEvent()">Submit Time</button>
+     </ion-content>
+        
     </ion-content>
 </ion-view>
