@@ -49,6 +49,7 @@ var newtime2 = {
     
     var items = $firebaseArray(ref);
     
+    
     var todos = {
     'items': items,
     addItem: function(name, email, phone, password)

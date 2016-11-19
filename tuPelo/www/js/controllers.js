@@ -414,6 +414,7 @@ var ref = firebase.database().ref().child('cal');
   snapshot.forEach(function(childSnapshot) {
     var child = childSnapshot.val();
 
+
     
         $scope.events.push({
         title: child.title,
