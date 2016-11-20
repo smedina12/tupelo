@@ -88,8 +88,14 @@ var newtime2 = {
     'time': times,
     addTime: function(datetime, title)
     {
+        var dateTime = moment(datetime).format('YYYY-MM-DDTHH:mm:ss');
+        //2016-11-19T01:32:21
+        //2016-11-18T09:30:00
+        
+        console.log(dateTime);
+        
         ref.child(title).set({
-            'start': datetime.toString(),
+            'start': dateTime.toString(),
             'title': title
         });
         

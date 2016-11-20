@@ -49,11 +49,15 @@ var ref = firebase.database().ref().child('cal');
     ref.once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var child = childSnapshot.val();
-    console.log('here', child.id);
+    //console.log('here', child.id);
     
+    
+    var start = moment(child.start);
+  console.log(child.start);
+  console.log(start);
         $scope.events.push({
         title: child.title,
-        start: child.start,
+        start: start,
         stick: true,
       });
 
