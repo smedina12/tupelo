@@ -94,7 +94,7 @@ var newtime2 = {
         
         console.log(dateTime);
         
-        ref.child(title).set({
+        times.$add({
             'start': dateTime.toString(),
             'title': title
         });

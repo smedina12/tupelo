@@ -15,6 +15,10 @@
 <ion-view name="menuContent" title="Full Calendar" id="page3" style="">
 
     <ion-content scroll="true" has-bouncing="false" class="showScroll">
+        <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
             <div class="row">
             	
               <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" id='calendar'></div> 

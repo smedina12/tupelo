@@ -32,7 +32,10 @@ $scope.items = Todos.items;
    
  
 .controller('fullCalendarCtrl',  ['$scope', '$firebaseArray',
-function fullCalendarCtrl($scope, $compile, uiCalendarConfig, $firebaseArray) {
+function fullCalendarCtrl($scope, $compile, uiCalendarConfig, $firebaseArray, $http) {
+  
+
+  
     
     
     
@@ -50,16 +53,17 @@ var ref = firebase.database().ref().child('cal');
   snapshot.forEach(function(childSnapshot) {
     var child = childSnapshot.val();
     //console.log('here', child.id);
-    
-    
+      
+    $scope.doRefresh = function() {
+    };
+      //if(start != $scope.events.start){
     var start = moment(child.start);
-  console.log(child.start);
-  console.log(start);
         $scope.events.push({
         title: child.title,
         start: start,
-        stick: true,
+        stick: true
       });
+ 
 
     
   });
@@ -86,14 +90,7 @@ var ref = firebase.database().ref().child('cal');
     };
     
     /* event source that contains custom events on the scope */
-    $scope.events = [
-      {title: 'All Day Event',start: new Date(y, m, 1)},
-      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-      {id: 999, title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-      {id: 999, title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'https://google.com/'}
-    ];
+    $scope.events = [];
     
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
@@ -107,11 +104,7 @@ var ref = firebase.database().ref().child('cal');
    $scope.calEventsExt = {
        color: '#f00',
        textColor: 'yellow',
-       events: [ 
-          {type:'party',title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
-          {type:'party',title: 'Lunch 2',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
-          {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'https://google.com/'}
-        ]
+       events: []
     };
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
@@ -178,17 +171,7 @@ var ref = firebase.database().ref().child('cal');
       }
     };
 
-    $scope.changeLang = function() {
-      if($scope.changeTo === 'Hungarian'){
-        $scope.uiConfig.calendar.dayNames = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
-        $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
-        $scope.changeTo= 'English';
-      } else {
-        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        $scope.changeTo = 'Hungarian';
-      }
-    };
+   
     /* event sources array*/
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
@@ -291,45 +274,9 @@ $scope.data = {
         alert('Form submitted');
     };
     
-/* Bindable functions
- -----------------------------------------------*/
-$scope.endDateBeforeRender = endDateBeforeRender
-$scope.endDateOnSetTime = endDateOnSetTime
-$scope.startDateBeforeRender = startDateBeforeRender
-$scope.startDateOnSetTime = startDateOnSetTime
-
-function startDateOnSetTime () {
-  $scope.$broadcast('start-date-changed');
-}
-
-function endDateOnSetTime () {
-  $scope.$broadcast('end-date-changed');
-}
-
-function startDateBeforeRender ($dates) {
-  if ($scope.dateRangeEnd) {
-    var activeDate = moment($scope.dateRangeEnd);
-
-    $dates.filter(function (date) {
-      return date.localDateValue() >= activeDate.valueOf()
-    }).forEach(function (date) {
-      date.selectable = false;
-    })
-  }
-}
-
-function endDateBeforeRender ($view, $dates) {
-  if ($scope.dateRangeStart) {
-    var activeDate = moment($scope.dateRangeStart).subtract(1, $view).add(1, 'minute');
-
-    $dates.filter(function (date) {
-      return date.localDateValue() <= activeDate.valueOf()
-    }).forEach(function (date) {
-      date.selectable = false;
-    })
-  }
-}
-
+$scope.isDisabledDate = function(currentDate, mode) {
+  return mode === 'day' && (currentDate.getDay() === 0 || currentDate.getDay() === 6);
+};
     
     
     
