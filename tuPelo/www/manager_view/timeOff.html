@@ -5,7 +5,7 @@
      <div ng-repeat="item in weekList track by $index" ng-show="item.selected == true" >
        <h3 >{{ item.name }}</h3>
            <span class="input-label">From:</span>
-         <input  placeholder="8:00am" type="text" ng-model="days.from" ng-checked="selection.indexOf(item) > -1">
+         <input  placeholder="8:00am" type="text" ng-model="days.from" ng-checked="selection.indexOf(item) > -1 ">
          <span class="input-label">To:</span>
         <input placeholder="5:00pm" type="text" ng-model="days.to" ng-checked="selection.indexOf(item) > -1"></div>
         

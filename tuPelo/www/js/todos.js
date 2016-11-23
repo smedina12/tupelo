@@ -30,6 +30,11 @@ var newtime2 = {
 };
   ref3.child("0").update(newtime);
   ref3.child("1").update(newtime2);
+  ref3.child("2").update(newtime2);
+  ref3.child("3").update(newtime2);
+  ref3.child("4").update(newtime2);
+  ref3.child("5").update(newtime2);
+  ref3.child("6").update(newtime2);
   
         
     }
