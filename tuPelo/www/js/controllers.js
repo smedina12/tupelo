@@ -343,7 +343,7 @@ $scope.isDisabledDate = function(currentDate, mode) {
   
 })
 
-.controller('timeOffCtrl', function($scope, Weeks) {
+.controller('timeOffCtrl', function($scope, Weeks, $state) {
 
   $scope.weekList = Weeks.weekList;
   
@@ -354,6 +354,8 @@ $scope.isDisabledDate = function(currentDate, mode) {
     $scope.addDays = function(){
         Weeks.addDays($scope.days.from, $scope.days.to)
         alert('Form submitted');
+        //$state.go('/Manager_sideMenu/settings');
+        
     };
     
 
@@ -710,10 +712,21 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('logInCtrl', ['$scope', '$stateParams', 'Todos', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('logInCtrl', ['$scope', '$stateParams','$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $ionicAuth) {
+function ($scope, $stateParams, $location) {
+
+    $scope.data = {
+        'email': '',
+        'password': ''
+    }
+    
+    $scope.error = '';
+    
+  $scope.redirect = function() {    
+    $location.path('/page1/info');
+  };
     
 
 }])
@@ -721,11 +734,11 @@ function ($scope, $stateParams, $state, $ionicAuth) {
 .controller('signupCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicAuth, $ionicUser, $state) {
+function ($scope, $stateParams ) {
     
     $scope.data = {
         'name': '',
-        'email': '',
+        'username': '',
         'password': ''
     }
     

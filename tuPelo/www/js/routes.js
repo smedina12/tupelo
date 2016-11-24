@@ -1,41 +1,6 @@
-angular.module('app.signin', [])
+var user = 'Manager';
 
-.factory('SignIn', function($scope)
-{
-  
-  var add =[];
-  
-  var admin = [];
-	admin.push(
-		{
-			"id":"6789797010",
-			"password":"hello"
-		}	
-	);
-	add.push(admin);
-  
-  var customer = [];
-  customer.push(
-    {
-      "id":"4045525183",
-			"password":"hello"
-    }
-    );
-    add.push(customer);
-  var employee = [];
-  employee.push(
-    {
-      "id":"6789797020",
-			"password":"hello"
-    }
-    );
-    add.push(employee);
-  return add;
-});
-
-
-
-var user = 'idk';
+if(user == "Signin"){
 
 angular.module('app.routes', [])
 
@@ -45,7 +10,9 @@ angular.module('app.routes', [])
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
-$stateProvider
+  $stateProvider
+    
+  
 
       .state('tabsController.info', {
     url: '/info',
@@ -82,6 +49,26 @@ $stateProvider
       }
     }
   })
+
+$urlRouterProvider.otherwise('/page1/login')
+  
+
+});
+
+}
+  
+  
+  else if(user == "Manager"){
+angular.module('app.routes', [])
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+$stateProvider
+
 
 .state('menu.settings', {
     url: '/settings',
@@ -187,12 +174,13 @@ $stateProvider
   
     
 
-$urlRouterProvider.otherwise('/Manager_sideMenu/Manager_Mycalendar')
+$urlRouterProvider.otherwise('/Manager_sideMenu/Manager_DetailCalendar')
+//$urlRouterProvider.otherwise('/login');
 
 })
 
-
-if(user == 'Customer')
+}
+else if(user == 'Customer')
 {
 angular.module('app.routes', [])
 
