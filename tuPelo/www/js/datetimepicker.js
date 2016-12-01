@@ -452,7 +452,7 @@
       minView: 'minute',
       modelType: 'Date',
       parseFormat: 'YYYY-MM-DDTHH:mm:ss.SSSZZ',
-      renderOn: null,
+      renderOn: '10:30:00',
       startView: 'day'
     }
 

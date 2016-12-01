@@ -1,14 +1,37 @@
-<ion-view view-title="{{item.name}}">
+<style>
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 50%;
+    border:3px;
+}
+</style>
+<ion-view view-title="{{item.name}}" >
   <ion-content class="padding">
     <!--<ion-list>-->
       <!--<ion-item class="item-remove-animate item-avatar item-icon-right"  type="item-text-wrap" >-->
         <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
-        <p>{{item.name}}</p>
-        <p>{{item.phone}}</p>
-        <p>{{item.email}}</p>
+        <a ui-sref="menu.test1" id="menu-button8" class="button button-outline button-positive  button-block" ng-module="{{item.phone}}">Make appointemnt</a>
+        
+         <img ng-src="{{item.face}}" class="center" style="width: 30%; height: 30%"><br/>
+        <h4>Name:</h4> {{item.name}}
+        <h4>Phone:</h4>{{item.phone}}
+        <h2 class="center">Pictures</h2>
+        <hr/>
         <!--<ion-option-button class="button-assertive">-->
         <!--</ion-option-button>-->
      <!-- </ion-item>-->
     <!--</ion-list>-->
   </ion-content>
 </ion-view>
+
+
+
+
+
+
+
+
+
+

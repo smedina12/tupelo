@@ -25,10 +25,8 @@ function($scope, $stateParams, Todos){
 
 $scope.items = Todos.items;
 
-    
-    
-
-  })
+  
+})
    
  
 .controller('fullCalendarCtrl',  ['$scope', '$firebaseArray',
@@ -37,30 +35,31 @@ function fullCalendarCtrl($scope, $compile, uiCalendarConfig, $firebaseArray, $h
 
   
     
-    
-    
+
 var ref = firebase.database().ref().child('cal');
  //$scope.times = $firebaseArray(ref);
 // var justDate;
 
   ref.once("value").then(function(snapshot) {
-    var cDate = snapshot.child("id1").val(); // { first: "Ada", last: "Lovelace"}
-    var justDate = snapshot.child("id1/start").val(); // "date"
-    var title = snapshot.child("id1/title").val(); // "title"
-      
       
     ref.once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var child = childSnapshot.val();
     //console.log('here', child.id);
       
+    
+    
+      //if(start != $scope.events.start){
     $scope.doRefresh = function() {
     };
-      //if(start != $scope.events.start){
     var start = moment(child.start);
+    var end = moment(child.end);
         $scope.events.push({
         title: child.title,
         start: start,
+        end: end,
+        url: '#/Manager_sideMenu/Manager_DetailCalendar',
+        eventOverlap: false,
         stick: true
       });
  
@@ -255,9 +254,27 @@ function ($scope, $stateParams, $firebaseObject, Todos) {
  
    
   
-.controller('test1Ctrl', function($scope, $stateParams, $firebaseObject, DateTime){
+.controller('test1Ctrl', function($scope, $stateParams, $firebaseObject, DateTime, $ionicPopup){
   
   
+  
+  var ref = firebase.database().ref().child('cal');
+ //$scope.times = $firebaseArray(ref);
+// var justDate;
+var child;
+  ref.once("value").then(function(snapshot) {
+      
+    ref.once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+     child = childSnapshot.val();
+    //console.log('here', child.id);
+      
+    
+  });
+});
+})
+ 
+
 //sets the lenguage  
 moment.locale('en'); 
 $scope.data = {
@@ -265,18 +282,42 @@ $scope.data = {
         'title': 'id4'
         
     };
+   // $scope.$broadcast('end-date-changed');
+    
     
     
     $scope.one = $scope.data.dateDropDownInput;
     $scope.one.toString();
-    $scope.addTime = function(){
+     $scope.addTime = function(){
+        var currentDate = moment().format('YYYY-MM-DDTHH:mm:ss');
+        
+        if(moment($scope.data.dateDropDownInput).isAfter(currentDate, 'hour') == false)
+    {
+     alert('You can not make same day appointments or select dates in the past.');
+     console.log(child.start);
+     
+    }else{
+      
+      for(var i=0; i < child.length;i++)
+{
+ if(child.start[i] == $scope.data.dateDropDownInput){
+   alert('Already selected');
+
+   
+ }
+}
+  
         DateTime.addTime($scope.data.dateDropDownInput, $scope.data.title);
-        alert('Form submitted');
+   }
     };
+        //alert('Form submitted');
+    
     
 $scope.isDisabledDate = function(currentDate, mode) {
   return mode === 'day' && (currentDate.getDay() === 0 || currentDate.getDay() === 6);
 };
+    
+    
     
     
     
@@ -397,20 +438,19 @@ var ref = firebase.database().ref().child('cal');
 // var justDate;
 
   ref.once("value").then(function(snapshot) {
-    var cDate = snapshot.child("id1").val(); // { first: "Ada", last: "Lovelace"}
-    var justDate = snapshot.child("id1/start").val(); // "date"
-    var title = snapshot.child("id1/title").val(); // "title"
+
       
       
     ref.once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var child = childSnapshot.val();
 
-
+console.log(child.end);
     
         $scope.events.push({
         title: child.title,
         start: child.start,
+        end: child.end,
         stick: true,
       });
 
@@ -593,10 +633,17 @@ function ($scope, $stateParams) {
 .controller('chooseAHairstylistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function($scope, $stateParams, Todos){
+  //  var ref = firebase.database().ref();
+//$scope.name = $firebaseObject(ref);
 
 
-}])
+$scope.items = Todos.items;
+
+    
+    
+
+  }])
    
 .controller('stylistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function

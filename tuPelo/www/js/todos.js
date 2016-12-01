@@ -93,18 +93,34 @@ var newtime2 = {
     'time': times,
     addTime: function(datetime, title)
     {
-        var dateTime = moment(datetime).format('YYYY-MM-DDTHH:mm:ss');
+        var currentDate = moment().format('YYYY-MM-DDTHH:mm:ss');
+        if(!datetime){
+            alert('Please select a date');
+        }
+        else
+        {
+    if( datetime <  currentDate){
+            console.log('true');
+            return true;
+        }
+        else console.log();
+            
+        var dateStart = moment(datetime).format('YYYY-MM-DDTHH:mm:ss');
+        var date_end = moment(dateStart).add(30, 'minutes');
+        var dateEnd =  moment(date_end).format('YYYY-MM-DDTHH:mm:ss');
+        
         //2016-11-19T01:32:21
         //2016-11-18T09:30:00
         
-        console.log(dateTime);
+        console.log(currentDate);
         
         times.$add({
-            'start': dateTime.toString(),
+            'start': dateStart.toString(),
+            'end': dateEnd.toString(),
             'title': title
         });
         
-        
+        }
         
     }
 
